@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>WarungKuy - Login</title>
+</head>
+<style>
+    .teks-masuk {
+        font-family: "Roboto Thin";
+        position: absolute;
+        width: 295px;
+        height: 69px;
+        left: 310px;
+        top: 14px;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 48px;
+        line-height: 56px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #F8F8F8;
+    }
+    .wadah-form {
+        position: absolute;
+        width: 724px;
+        height: 566px;
+        left: 266px;
+        top: 172px;
+        background: #1D2446;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 57px;
+    }
+    .field-size {
+        width: 439px;
+        height: 64px;
+        position: absolute;
+        left: 150px;
+        top: 114px;
+    }
+    .field-size-another{
+        width: 439px;
+        height: 64px;
+        position: absolute;
+        left: 150px;
+        top: 225px;
+    }
+    .field {
+        position: absolute;
+        width: 443px;
+        height: 70px;
+        left: 86px;
+        top: 96px;
+        background: #D9D9D9;
+        border-radius: 56px;
+    }
+</style>
+<body>
+<div style="position: relative; width: 1440px;height: 800px; background: #2196F3;">
+    <img src="/Assets/20221021_120850_0000-removebg-preview%202.png">
+    <div class="wadah-form">
+        <!--        <h1 class="teks-masuk">Masuk</h1>-->
+        <p class="teks-masuk">Masuk</p>
+        <form method="post" action="../Controller/cek_login.php">
+            <div>
+                <input type="text" class="field-size" name="email-log" placeholder="E-Mail">
+            </div>
+            <div>
+                <input type="password" class="field-size-another" name="pass-log" placeholder="Password">
+            </div>
+            <div class="position-absolute top-50 bottom-50 ">
+                <button type="submit" class="btn btn-primary btn-lg" name="submit">Login</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
