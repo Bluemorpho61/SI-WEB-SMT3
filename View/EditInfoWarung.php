@@ -1,3 +1,11 @@
+<?php
+include('../Config/koneksi.php');
+$id_warung = $_GET['id'];
+$query = "SELECT nama_warung FROM tb_warung WHERE id_warung=$id_warung";
+$proses_nama = mysqli_query($koneksi, $query)->fetch_array()['nama_warung'];
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>WarungKuy - Kelola Warung</title>
+    <title>WarungKuy - Edit Info Warung</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../View/css/bootstrap.min.css" rel="stylesheet">
@@ -132,7 +140,9 @@
                 <ul class="nav" id="side-menu">
                     <li class="sidebar-search">
                         <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search...">
+                            <label>
+                                <input type="text" class="form-control" placeholder="Search...">
+                            </label>
                             <span class="input-group-btn">
                                         <button class="btn btn-primary" type="button">
                                             <i class="fa fa-search"></i>
@@ -163,7 +173,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><?php echo $_GET['nama_warung'] ?></h1>
+                    <h1 class="page-header"><?php echo $proses_nama; ?></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -179,7 +189,9 @@
                                 <div role="form">
                                     <div class="form-group">
                                         <label>Nama Warung</label>
-                                        <input class="form-control">
+                                        <label>
+                                            <input class="form-control">
+                                        </label>
                                     </div>
 
                                     <div class="form-group">
@@ -187,38 +199,33 @@
                                         <input class="form-control">
                                     </div>
 
-                                   <label>Deskirpsi</label>
+                                    <label>Deskirpsi</label>
                                     <textarea class="form-control"></textarea>
 
+                                    <div class="col-md-4 offset-md-4">
+                                        <img src="" class="img-responsive">
                                     </div>
-
-                                    <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                                        <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
-                                        <label id="upload-label" for="upload" class="font-weight-light text-muted">Ubah foto lama</label>
-                                    </div>
-
                                 </div>
+
                             </div>
-
+                            <!-- /.panel-body -->
                         </div>
-                        <!-- /.panel-body -->
+                        <!-- /.panel -->
                     </div>
-                    <!-- /.panel -->
+                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.col-lg-12 -->
+                <!-- /.row -->
+
+
+                <!-- /.panel-body -->
             </div>
-            <!-- /.row -->
-
-
-            <!-- /.panel-body -->
+            <!-- /.panel -->
         </div>
-        <!-- /.panel -->
+        <!-- /.col-lg-6 -->
     </div>
-    <!-- /.col-lg-6 -->
-</div>
-<!-- /.row -->
+    <!-- /.row -->
 
-<!-- /.row -->
+    <!-- /.row -->
 </div>
 <!-- /.container-fluid -->
 </div>

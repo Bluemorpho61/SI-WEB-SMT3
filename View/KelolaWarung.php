@@ -1,3 +1,7 @@
+<?php
+include('../Config/koneksi.php');
+//$query_nama ="SELECT nama_warung"
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -148,7 +152,7 @@
                         <a href="tables.php"><i class="fa fa-table fa-fw"></i> Kelola User</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-edit fa-fw"></i> Kelola Warung</a>
+                        <a href="#"><i class="fa fa-edit fa-fw"></i> Kelola Data Warung</a>
                     </li>
 
 
@@ -163,7 +167,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Kelola Warung</h1>
+                    <h1 class="page-header">Kelola Data Warung</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -172,7 +176,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Kelola Warung
+                            Kelola Data Warung
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -187,7 +191,7 @@
                                     </thead>
                                     <tbody>
                                     <?php
-                                    include('../Config/koneksi.php');
+
                                     $query = "SELECT tb_warung.id_warung, tb_warung.nama_warung, tb_users.username FROM tb_warung, tb_users WHERE tb_warung.id_user = tb_users.id_user";
                                     $result = mysqli_query($koneksi, $query);
                                     while ($data = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
@@ -197,7 +201,9 @@
                                             <td><?php echo $data['nama_warung'] ?></td>
                                             <td><?php echo $data['username'] ?></td>
                                             <td>
-                                                <a class="btn btn-warning" href="../View/EditInfoWarung.php">Edit Info</a>
+                                                <a class="btn btn-warning"
+                                                   href="../View/EditInfoWarung.php?id=<?php echo $data['id_warung'] ?>">Edit
+                                                    Info</a>
                                                 <a class="btn btn-danger"
                                                    href="../Controller/takedown.php?id=<?php echo $data['id_user']; ?>">Takedown</a>
                                             </td>

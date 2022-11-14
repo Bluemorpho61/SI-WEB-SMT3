@@ -22,9 +22,9 @@ if (isset($_POST['submit'])) {
                     ?>
                     <script>alert("Anda masuk sebagai admin")</script>
                     <?php
-                    header("Location:../View/index.php");
-                } elseif ($hak=='registered'){
-                    echo 'Selamat datang '.$username;
+                    header("Location:../View/index.php?username=" . urlencode($username));
+                } elseif ($hak == 'registered') {
+                    echo 'Selamat datang ' . $username;
                 }
             } else {
                 ?>
