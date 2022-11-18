@@ -1,36 +1,36 @@
 <?php
-include ('../Config/koneksi.php');
+$koneksi =mysqli_connect("localhost", "root", "", "db_warungkuy");
 session_start();
 if (isset($_POST['submit'])){
-    $email =$_POST['email-log'];
-    $pass =$_POST['pass-log'];
+    $email=$_POST['email-log'];
+    $pass=$_POST['pass-log'];
 
-    if (!empty(trim($email)) &&!empty(trim($pass))){
-        $query ="SELECT * FROM tb_users WHERE email='$email'";
+    if (!empty(trim($email))&& !empty(trim($pass))){
+        $query="SELECT * FROM tb_users WHERE email ='$email'";
         $result=mysqli_query($koneksi,$query);
-        $num=mysqli_num_rows($result);
-        while ($row = mysqli_fetch_array($result)){
-            $id=$row['id_user'];
-            $username=$row['username'];
-            $userEmail=$row['email'];
-            $userPass=$row['password'];
-            $hak=$row['hak'];
+        $num =mysqli_num_rows($result);
+        while ($row =mysqli_fetch_array($result)){
+            $id =$row['id_user'];
+            $userVal=$row['email'];
+            $pasVal=$row['password'];
+            $level=$row['hak'];
         }
         if ($num !=0){
-            if($userEmail==$email &&$userPass==$pass){
-                ?><script>alert("Login Sukses")</script><?php
+            if ($userVal==$email &&$pasVal==$pass&&$level=='admin'){
+                //  header('Location: home.php?user_fullname='. urldecode($userName));
+                $_SESSION['id_user']=$id;
+                $_SESSION['email']=$userVal;
+                $_SESSION['password']=$pasVal;
+                $_SESSION['hak']=$level;
+                header('Location: ../View/index.php');
             }else{
-                ?><script>alert("Username / Password salah")</script><?php
+                $error='user atau password salah!!';
+                header('Location: ../View/LoginPage.html');
             }
         }else{
-            ?><script>alert("User tidak ditemukan / belum terdaftar")</script><?php
+            $error='user tidak ditemukan';
+            echo $error;
         }
-    }else{
-        ?><script>alert("Field jangan sampai kosong")</script><?php
-        header('Location:../View/LoginPage.html');
     }
+
 }
-
-
-
-
