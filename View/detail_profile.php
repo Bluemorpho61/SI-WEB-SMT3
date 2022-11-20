@@ -9,23 +9,23 @@ include('../Config/koneksi.php');
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Bootstrap Core CSS -->
-    <link href="../View/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../View/css/metisMenu.min.css" rel="stylesheet">
+    <link href="css/metisMenu.min.css" rel="stylesheet">
 
     <!-- Timeline CSS -->
-    <link href="../View/css/timeline.css" rel="stylesheet">
+    <link href="css/timeline.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../View/css/startmin.css" rel="stylesheet">
+    <link href="css/startmin.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="../View/css/morris.css" rel="stylesheet">
-    <link href="../View/tailwindOutput/output.css">
+    <link href="css/morris.css" rel="stylesheet">
+    <link href="tailwindOutput/output.css">
 
     <!-- Custom Fonts -->
-    <link href="../View/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <title>Detail Profile</title>
 </head>
 <body>
@@ -34,7 +34,7 @@ include('../Config/koneksi.php');
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.php">Startmin</a>
+            <a class="navbar-brand" href="../../index.php">Startmin</a>
         </div>
 
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -135,7 +135,7 @@ include('../Config/koneksi.php');
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="../../index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
@@ -159,19 +159,19 @@ include('../Config/koneksi.php');
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="panels-wells.html">Panels and Wells</a>
+                                <a href="../panels-wells.html">Panels and Wells</a>
                             </li>
                             <li>
                                 <a href="buttons.html">Buttons</a>
                             </li>
                             <li>
-                                <a href="notifications.html">Notifications</a>
+                                <a href="../notifications.html">Notifications</a>
                             </li>
                             <li>
-                                <a href="typography.html">Typography</a>
+                                <a href="../typography.html">Typography</a>
                             </li>
                             <li>
-                                <a href="icons.html"> Icons</a>
+                                <a href="../icons.html"> Icons</a>
                             </li>
                             <li>
                                 <a href="grid.html">Grid</a>
@@ -262,16 +262,16 @@ include('../Config/koneksi.php');
 <!-- /#wrapper -->
 
 <!-- jQuery -->
-<script src="../View/js/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="../View/js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
 <!-- Metis Menu Plugin JavaScript -->
-<script src="../View/js/metisMenu.min.js"></script>
+<script src="js/metisMenu.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="../View/js/startmin.js"></script>
+<script src="js/startmin.js"></script>
 
 </body>
 </html>

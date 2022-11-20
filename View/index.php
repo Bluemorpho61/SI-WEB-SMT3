@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('../Config/koneksi.php');
+include('../Config/koneksi.php');
 //$id = $_GET['username'];
 if (!isset($_SESSION['id_user'])){
 $_SESSION['msg']='Anda harus login terlebih dahulu';
@@ -23,22 +23,22 @@ $sesLvl =$_SESSION['hak'];
     <title>WarungKuy - Admin</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../View/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../View/css/metisMenu.min.css" rel="stylesheet">
+    <link href="css/metisMenu.min.css" rel="stylesheet">
 
     <!-- Timeline CSS -->
-    <link href="../View/css/timeline.css" rel="stylesheet">
+    <link href="css/timeline.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../View/css/startmin.css" rel="stylesheet">
+    <link href="css/startmin.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="../View/css/morris.css" rel="stylesheet">
+    <link href="css/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../View/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -143,7 +143,7 @@ $sesLvl =$_SESSION['hak'];
                                 </div>
                             </div>
                         </div>
-                        <a href="../View/tables.php">
+                        <a href="tables.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -171,7 +171,7 @@ $sesLvl =$_SESSION['hak'];
                                 </div>
                             </div>
                         </div>
-                        <a href="../View/KelolaWarung.php">
+                        <a href="KelolaWarung.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -243,21 +243,21 @@ $sesLvl =$_SESSION['hak'];
 </div>
 
 
-<script src="../View/js/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="../View/js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
 <!-- Metis Menu Plugin JavaScript -->
-<script src="../View/js/metisMenu.min.js"></script>
+<script src="js/metisMenu.min.js"></script>
 
 <!-- Morris Charts JavaScript -->
-<script src="../View/js/raphael.min.js"></script>
-<script src="../View/js/morris.min.js"></script>
-<script src="../View/js/morris-data.js"></script>
+<script src="js/raphael.min.js"></script>
+<script src="js/morris.min.js"></script>
+<script src="js/morris-data.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="../View/js/startmin.js"></script>
+<script src="js/startmin.js"></script>
 
 </body>
 </html>

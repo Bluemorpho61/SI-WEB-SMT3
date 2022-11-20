@@ -8,11 +8,11 @@ if (!isset($_SESSION['id_user'])){
 $id_user = $_GET['id'];
 ?>
 
-<link href="../View/css/startmin.css" rel="stylesheet">
-<link href="../View/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="../View/js/bootstrap.min.js"></script>
-<script src="../View/js/jquery.min.js"></script>
-<link href="../View/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="css/startmin.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <!------ Include the above in your HEAD tag ---------->
 
 
@@ -20,7 +20,7 @@ $id_user = $_GET['id'];
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="navbar-header">
-        <a class="navbar-brand" href="index.php">WarungKuy Administrator</a>
+        <a class="navbar-brand" href="../../index.php">WarungKuy Administrator</a>
     </div>
 
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -64,7 +64,7 @@ $id_user = $_GET['id'];
                     <!-- /input-group -->
                 </li>
                 <li>
-                    <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    <a href="../../index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
                 <li>
 
@@ -154,7 +154,7 @@ $id_user = $_GET['id'];
                 </div>
             </div>
             <div class="panel-footer">
-                <a href="../View/AturProfileUser.php?id=<?php echo $id_user;?>" data-original-title="Edit this user" data-toggle="tooltip" type="button"
+                <a href="AturProfileUser.php?id=<?php echo $id_user;?>" data-original-title="Edit this user" data-toggle="tooltip" type="button"
                    class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit">Edit </i></a>
             </div>
 
@@ -163,20 +163,20 @@ $id_user = $_GET['id'];
 </div>
 </div>
 
-<script src="../View/js/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="../View/js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
 <!-- Metis Menu Plugin JavaScript -->
-<script src="../View/js/metisMenu.min.js"></script>
+<script src="js/metisMenu.min.js"></script>
 
 <!-- Morris Charts JavaScript -->
-<script src="../View/js/raphael.min.js"></script>
-<script src="../View/js/morris.min.js"></script>
-<script src="../View/js/morris-data.js"></script>
+<script src="js/raphael.min.js"></script>
+<script src="js/morris.min.js"></script>
+<script src="js/morris-data.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="../View/js/startmin.js"></script>
+<script src="js/startmin.js"></script>
 
 </body>

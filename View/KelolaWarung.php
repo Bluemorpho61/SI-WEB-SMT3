@@ -19,22 +19,22 @@ if (!isset($_SESSION['id_user'])){
     <title>WarungKuy - Kelola Warung</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../View/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../View/css/metisMenu.min.css" rel="stylesheet">
+    <link href="css/metisMenu.min.css" rel="stylesheet">
 
     <!-- DataTables CSS -->
-    <link href="../View/css/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="css/dataTables/dataTables.bootstrap.css" rel="stylesheet">
 
     <!-- DataTables Responsive CSS -->
-    <link href="../View/css/dataTables/dataTables.responsive.css" rel="stylesheet">
+    <link href="css/dataTables/dataTables.responsive.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../View/css/startmin.css" rel="stylesheet">
+    <link href="css/startmin.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../View/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -152,7 +152,7 @@ if (!isset($_SESSION['id_user'])){
                                             <td><?php echo $data['username'] ?></td>
                                             <td>
                                                 <a class="btn btn-warning"
-                                                   href="../View/EditInfoWarung.php?id=<?php echo $data['id_warung'] ?>">Edit
+                                                   href="EditInfoWarung.php?id=<?php echo $data['id_warung'] ?>">Edit
                                                     Info</a>
                                                 <a class="btn btn-danger"
                                                    href="../Controller/takedown.php?id=<?php echo $data['id_user']; ?>">Takedown</a>
@@ -194,20 +194,20 @@ if (!isset($_SESSION['id_user'])){
 <!-- /#wrapper -->
 
 <!-- jQuery -->
-<script src="../View/js/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="../View/js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
 <!-- Metis Menu Plugin JavaScript -->
-<script src="../View/js/metisMenu.min.js"></script>
+<script src="js/metisMenu.min.js"></script>
 
 <!-- DataTables JavaScript -->
-<script src="../View/js/dataTables/jquery.dataTables.min.js"></script>
-<script src="../View/js/dataTables/dataTables.bootstrap.min.js"></script>
+<script src="js/dataTables/jquery.dataTables.min.js"></script>
+<script src="js/dataTables/dataTables.bootstrap.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="../View/js/startmin.js"></script>
+<script src="js/startmin.js"></script>
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>

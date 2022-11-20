@@ -1,8 +1,8 @@
 <?php
-require ('../Config/koneksi.php');
+require('../Config/koneksi.php');
 $query ="SELECT * ";
 ?>
-<link href="../View/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="../View/js/bootstrap.min.js></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
@@ -11,7 +11,7 @@ $query ="SELECT * ";
     <title>Detail Info User</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../View/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
