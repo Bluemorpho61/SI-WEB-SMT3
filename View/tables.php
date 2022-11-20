@@ -1,3 +1,12 @@
+<?php
+session_start();
+include('../Config/koneksi.php');
+if (!isset($_SESSION['id_user'])){
+    $_SESSION['msg']='Anda harus login terlebih dahulu';
+    header("Location:../View/LoginPage.html");
+}
+$sesNama =$_SESSION['username'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +32,7 @@
 
     <!-- Custom CSS -->
     <link href="../View/css/startmin.css" rel="stylesheet">
+
 
     <!-- Custom Fonts -->
     <link href="../View/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -56,71 +66,16 @@
         </ul>
 
         <ul class="nav navbar-right navbar-top-links">
-            <li class="dropdown navbar-inverse">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu dropdown-alerts">
-                    <li>
-                        <a href="#">
-                            <div>
-                                <i class="fa fa-comment fa-fw"></i> New Comment
-                                <span class="pull-right text-muted small">4 minutes ago</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                <span class="pull-right text-muted small">12 minutes ago</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                <span class="pull-right text-muted small">4 minutes ago</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <i class="fa fa-tasks fa-fw"></i> New Task
-                                <span class="pull-right text-muted small">4 minutes ago</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                <span class="pull-right text-muted small">4 minutes ago</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a class="text-center" href="#">
-                            <strong>See All Alerts</strong>
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i> secondtruth <b class="caret"></b>
+                    <i class="fa fa-user fa-fw"></i><?php echo $sesNama;?> <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                    </li>
                     <li class="divider"></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a href="../Controller/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                 </ul>
             </li>
@@ -190,7 +145,7 @@
                                     </thead>
                                     <tbody>
                                     <?php
-                                    include('../Config/koneksi.php');
+
                                     $query = "SELECT * FROM tb_users";
                                     $result = mysqli_query($koneksi, $query);
                                     while ($data = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
@@ -201,7 +156,7 @@
                                             <td><?php echo $data['email']?></td>
                                             <td><?php echo $data['hak']?></td>
                                            <td>
-                                               <a class="btn btn-info" href="#">Info</a>
+                                               <a class="btn btn-info" href="DetailProfileUser.php?id=<?php echo $data['id_user']?>">Info</a>
                                                <a class="btn btn-danger" href="../Controller/takedown.php?id=<?php echo $data['id_user'];?>">Takedown</a>
                                            </td>
                                         </tr>

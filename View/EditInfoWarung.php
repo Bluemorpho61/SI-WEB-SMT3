@@ -201,15 +201,15 @@ $proses_nama = mysqli_query($koneksi, $query)->fetch_array()['nama_warung'];
 
                                     <label>Deskirpsi</label>
                                     <textarea class="form-control"></textarea>
-
-                                    <div class="col-md-4 offset-md-4">
-                                        <img src="" class="img-responsive">
-                                    </div>
                                 </div>
 
                             </div>
                             <!-- /.panel-body -->
                         </div>
+                        <div class="right">
+                            <p>Teks</p>
+                        </div>
+
                         <!-- /.panel -->
                     </div>
                     <!-- /.col-lg-12 -->

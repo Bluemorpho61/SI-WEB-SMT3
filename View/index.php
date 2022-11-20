@@ -1,0 +1,263 @@
+<?php
+session_start();
+require('../Config/koneksi.php');
+//$id = $_GET['username'];
+if (!isset($_SESSION['id_user'])){
+$_SESSION['msg']='Anda harus login terlebih dahulu';
+header("Location:../View/LoginPage.html");
+}
+$sesID =$_SESSION['id_user'];
+$sesNama =$_SESSION['username'];
+$sesLvl =$_SESSION['hak'];
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>WarungKuy - Admin</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../View/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../View/css/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="../View/css/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../View/css/startmin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../View/css/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../View/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.php">WarungKuy Administrator</a>
+        </div>
+
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <ul class="nav navbar-nav navbar-left navbar-top-links">
+            <li><a href="#"><i class="fa fa-home fa-fw"></i> Website</a></li>
+        </ul>
+
+        <ul class="nav navbar-right navbar-top-links">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> <?php echo $_SESSION['username']; ?> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="../Controller/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!-- /.navbar-top-links -->
+
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search">
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                </span>
+                        </div>
+                        <!-- /input-group -->
+                    </li>
+                    <li>
+                        <a href="index.php" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    </li>
+                    <li>
+
+                    </li>
+                    <li>
+                        <a href="tables.php"><i class="fa fa-table fa-fw"></i> Kelola User</a>
+                    </li>
+                    <li>
+                        <a href="KelolaWarung.php"><i class="fa fa-edit fa-fw"></i>Kelola Data Warung</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Halo <?php echo $sesNama ?></h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-user fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"><?php
+                                        $query = "SELECT COUNT(username) as jumlah FROM tb_users";
+                                        $hasil = mysqli_query($koneksi, $query);
+                                        $hasilfetch = $hasil->fetch_array()['jumlah'];
+                                        echo $hasilfetch;
+                                        ?></div>
+                                    <div>Jumlah User!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="../View/tables.php">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-tasks fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"><?php
+                                        $query_jml_warung = "SELECT COUNT(nama_warung) as jumlah FROM tb_warung";
+                                        $hasil_jml_warung = mysqli_query($koneksi, $query_jml_warung);
+                                        $hasilfetch_jml_warung = $hasil_jml_warung->fetch_array()['jumlah'];
+                                        echo $hasilfetch_jml_warung;
+                                        ?></div>
+                                    <div>Jumlah Warung</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="../View/KelolaWarung.php">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <h1 style="font-family: Roboto">Warung yang baru saja ditambahkan</h1>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-4" style="font-size: 10px">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-striped">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nama Warung</th>
+                                    <th>Pengaju</th>
+                                    <th>Waktu ditambahkan</th>
+                                    <th>Detail Info</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                $query = "SELECT tb_warung.id_warung, tb_warung.nama_warung, tb_users.username, tb_warung.tanggal_ditambahkan FROM tb_warung, tb_users WHERE tb_warung.id_user = tb_users.id_user";
+                                $result = mysqli_query($koneksi, $query);
+                                while ($data = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                                    ?>
+                                    <tr>
+                                    <td><?php echo $data['id_warung']; ?></td>
+                                    <td><?php echo $data['nama_warung']; ?></td>
+                                    <td><?php echo $data['username']; ?></td>
+                                    <td><?php echo $data['tanggal_ditambahkan']; ?></td>
+                                    <td><a class="btn btn-info" >Detail</a></td>
+                                    </tr><?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.col-lg-4 (nested) -->
+                    <div class="col-lg-8">
+                        <div id="morris-bar-chart"></div>
+                    </div>
+                    <!-- /.col-lg-8 (nested) -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-8 -->
+
+
+    <!-- /.panel -->
+
+    <!-- /.panel .chat-panel -->
+</div>
+
+
+<script src="../View/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../View/js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="../View/js/metisMenu.min.js"></script>
+
+<!-- Morris Charts JavaScript -->
+<script src="../View/js/raphael.min.js"></script>
+<script src="../View/js/morris.min.js"></script>
+<script src="../View/js/morris-data.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="../View/js/startmin.js"></script>
+
+</body>
+</html>
