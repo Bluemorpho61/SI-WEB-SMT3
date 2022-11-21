@@ -14,17 +14,17 @@ if (isset($_POST['submit'])){
             $username=$row['username'];
             $emailVal=$row['email'];
             $pasVal=$row['password'];
-            $level=$row['hak'];
+             $level=$row['hak'];
         }
         if ($num !=0){
             if ($emailVal==$email &&$pasVal==$pass&&$level=='admin'){
                 //  header('Location: home.php?user_fullname='. urldecode($userName));
-                $_SESSION['id_user']=$id;
-                $_SESSION['username']=$username;
+               $_SESSION['id_user']=$id;
+               $_SESSION['username']=$username;
                 $_SESSION['email']=$emailVal;
                 $_SESSION['password']=$pasVal;
                 $_SESSION['hak']=$level;
-                header('Location: ../View/index.php?id='.$id);
+                header('Location: ../View/index.php');
             }else{
                 $error='user atau password salah!!';
                 header('Location: ../View/LoginPage.html');

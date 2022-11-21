@@ -1,5 +1,6 @@
 <?php
 session_start();
 if (session_destroy()){
-    header("Location: ../View/LoginPage.html");
+    ?><script>alert("Anda telah berhasil logout");</script><?php
+    header("Location: ../View/Masuk.html");
 }
