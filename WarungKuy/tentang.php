@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>WarungKuy-Privasi</title>
+  <title>WarungKuy-Tentang</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -40,17 +40,17 @@
     <div class="container d-flex justify-content-between align-items-center">
 
       <div class="logo">
-        <h1><a href="index.html">WarungKuy</a></h1>
+        <h1><a href="index.php">WarungKuy</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        <!-- <a href="index.php"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="fitur.html">Fitur</a></li>
-          <li><a href="Akun.html">Akun Saya</a></li>
-          <li><a href="Masuk.html">Masuk</a></li>
+          <li><a href="index.php">Home</a></li>
+          <li><a href="fitur.php">Fitur</a></li>
+          <li><a href="Akun.php">Akun Saya </a></li>
+          <li><a href="Masuk.php">Masuk</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -60,8 +60,9 @@
 
   <main id="main">
 
-    <!-- ======= FeatPricingures Section ======= -->
-    <div class="hero-section inner-page">
+    <!-- ======= Features Section ======= -->
+
+    <section class="hero-section inner-page">
       <div class="wave">
 
         <svg width="1920px" height="265px" viewBox="0 0 1920 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -79,67 +80,61 @@
           <div class="col-12">
             <div class="row justify-content-center">
               <div class="col-md-7 text-center hero-text">
-                <h1 data-aos="fade-up" data-aos-delay="">Kebijakan Privasi</h1>
-                <p class="mb-5" data-aos="fade-up" data-aos-delay="100">Kebijakan privasi WarungKuy</p>
+                <h1 data-aos="fade-up" data-aos-delay="">Tentang Kami</h1>
+                <p class="mb-5" data-aos="fade-up" data-aos-delay="100">Berikut adalah informasi tentang kami</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-    </div>
+    </section>
+
+    <section class="section pb-0">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-4 me-auto">
+            <h2 class="mb-4">Salah satu Aplikasi Review Makanan
+                Terbaik di Indonesia</h2>
+            <p class="mb-4">Aplikasi WarungKuy merupakan aplikasi yang membantu para pengguna untuk mencari saran makanan terbaik di dekat mereka.</p>
+          </div>
+          <div class="col-md-6" data-aos="fade-left">
+            <img src="assets/img/undraw_svg_2.svg" alt="Image" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section class="section">
       <div class="container">
-
-        <div class="row justify-content-center text-center">
-          <div class="col-md-7 mb-5">
-            <h2 class="section-heading">Kebijakan Privasi</h2>
-            <p>Berikut merupakan kebijakan privasi pada WarungKuy</p>
+        <div class="row align-items-center">
+          <div class="col-md-4 ms-auto order-2">
+            <h2 class="mb-4">Informasi Data Tempat Makan Yang Lengkap</h2>
+            <p class="mb-4">WarungKuy memanfaatkan teknologi dengan mengelola dan menyajikan daftar tempat makan dengan penjelasan menu secara
+                 terperinci dan dilengkapi dengan foto serta detail lokasi dari setiap tempat makan.</p>
+          </div>
+          <div class="col-md-6" data-aos="fade-right">
+            <img src="assets/img/undraw_svg_3.svg" alt="Image" class="img-fluid">
           </div>
         </div>
-        <h6>Halo, terima kasih telah mengunjungi situs web (website) WarungKuy (selanjutnya disebut “platform”).
-          Platform ini dimiliki dan dioperasikan oleh admin WarungKuy (selanjutnya disebut, “Kami”). Kami sangat menghormati privasi atas Informasi Pribadi pendatang, pengguna, ataupun pengguna terdaftar (selanjutnya disebut “Anda”) dan ingin melindungi Informasi Pribadi tersebut sesuai dengan Kebijakan Privasi (selanjutnya disebut “Kebijakan”) ini.
-          Kebijakan ini berlaku pada setiap platform yang dioperasikan oleh Kami. Kebijakan ini menjelaskan bagaimana Kami mengumpulkan, menyimpan, menjaga, menggunakan dan (pada kondisi tertentu) mengungkapkan informasi pribadi yang teridentifikasi yang Anda berikan selama menggunakan platform Kami (selanjutnya disebut “Informasi Pribadi”) serta menjelaskan 
-          bagaimana langkah yang telah Kami ambil untuk mengamankan Informasi Pribadi Anda. Dengan mengunjungi, menggunakan dan/atau mendaftarkan diri Anda pada platform Kami, maka Anda dianggap telah membaca, mengerti, memahami dan menyetujui seluruh isi yang tertuang dalam kebijakan ini. Apabila Anda tidak setuju dengan sebagian atau seluruh isi Kebijakan ini, Anda dapat meninggalkan platform yang Kami kelola.</h6>
-          <p class="fw-bold text-black mt-5">1. Informasi Pribadi
-          </p>
-          <p>
-            Informasi Pribadi adalah setiap informasi atau keterangan tentang individu yang benar dan nyata yang melekat dan dapat diidentifikasi secara wajar dari informasi atau keterangan tersebut baik langsung maupun tidak langsung, pada masing-masing individu.
-            </p>
-            <p>Informasi Pribadi yang Kami kumpulkan diantaranya adalah:
-            </p>
-          <ul style="list-style:none;">
-            <li>a. Nama asli asli dari Anda sesuai dengan tanda pengenal,
-            </li>
-            <li>b. Username / nama pengguna,</li>
-            <li>c. Alamat email,</li>
-            <li>d. Alamat tempat tinggal.</li>
-          </ul>
-          <p class="fw-bold text-black mt-5">2. Informasi Pribadi yang Kami Kumpulkan, Simpan, Jaga dan Gunakan</p>
-          <p> 
-          Kami akan menggunakan Informasi Pribadi Anda yang kami kumpulkan melalui platform untuk tujuan-tujuan sebagai berikut: 
-            </p>
-          <ul style="list-style:none;">
-            <li>
-              a. Melakukan pendaftaran, mengelola, mengurus penggunaan dan/atau akses pada platform Kami,
-            </li>
-            <li>b. Mempublikasikan ulasan, komentar maupun rating yang Anda berikan melalui platform dalam bentuk apapun termasuk digital dan cetak untuk dapat diakses oleh publik,</li>
-            <li>c.  Melakukan pengukuran dan meningkatkan pengalaman Anda saat menggunakan platform.</li>
-          </ul>
-          <p class="fw-bold text-black mt-5">3. Persetujuan
-          </p>
-          <p>
-          Sebagaimana telah kami jelaskan pada bagian awal Kebijakan ini, dengan mengakses, menjelajah, menggunakan, mendaftarkan  diri Anda, menggunakan layanan atau produk yang Kami berikan pada platform atau dengan meng-klik tombol “konfirmasi” atau “setuju” atau pada saat Anda membuat akun baru pada situs, maka Anda menyetujui Kami dan perusahaan yang terafiliasi dengan Kami untuk mengumpulkan, menggunakan, mengungkapkan, mentransfer dan/atau mengolah Informasi Pribadi sebagaimana tertuang dalam Kebijakan ini.
-            </p>
-            <p class="fw-bold text-black mt-5">4. Hukum Yang Berlaku
-            </p>
-            <p>Kebijakan Privasi ini diatur dan ditafsirkan sesuai dengan hukum Negara Republik Indonesia. 
-              </p>
-                </div>
-              </section>
+      </div>
+    </section>
 
-  
+    <section class="section pb-0">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-4 me-auto">
+            <h2 class="mb-4">Penghubung Pemilik tempat makan dan para
+                pencari makanan </h2>
+            <p class="mb-4">WarungKuy telah menghubungkan banyak sekali pemilik tempat makan dengan para pencari makanan. Inovasi yang kami lakukan bertujuan untuk memberikan kenyamanan dan kemudahan bagi pengguna untuk mencari dan meriview tempat makan yang diinginkan</p>
+          </div>
+          <div class="col-md-6" data-aos="fade-left">
+            <img src="assets/img/undraw_svg_4.svg"alt="Image" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ======= Testimonials Section ======= -->
     <section class="section border-top border-bottom">
       <div class="container">
@@ -242,7 +237,7 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-6 me-auto text-center text-md-start mb-5 mb-md-0">
-            <h2>Mulai Telusuri Makanan Favoritmu</h2>
+            <h2>Starts Publishing Your Apps</h2>
           </div>
           <div class="col-md-5 text-center text-md-end">
             <p><a href="#" class="btn d-inline-flex align-items-center"><i class="bx bxl-Download"></i><span>Download Sekarang</span></a></p>
@@ -253,8 +248,8 @@
 
   </main><!-- End #main -->
 
-   <!-- ======= Footer ======= -->
-   <footer class="footer" role="contentinfo">
+  <!-- ======= Footer ======= -->
+  <footer class="footer" role="contentinfo">
     <div class="container">
       <div class="row">
         <div class="col-md-4 mb-4 mb-md-0">
@@ -269,16 +264,16 @@
               <h3>Navigasi</h3>
               <ul class="list-unstyled">
                 <li><a href="#">Home</a></li>
-                <li><a href="fitur.html">Fitur</a></li>
-                <li><a href="Akun.html">Akun saya</a></li>
-                <li><a href="Masuk.html">Masuk</a></li>
+                <li><a href="fitur.php">Fitur</a></li>
+                <li><a href="Akun.php">Akun saya</a></li>
+                <li><a href="Masuk.php">Masuk</a></li>
               </ul>
             </div>
             <div class="col-md-4 mb-4 mb-md-0">
               <h3>WarungKuy</h3>
               <ul class="list-unstyled">
-                <li><a href="tentang.html">Tentang Kami </a></li>
-                <li><a href="#">Kebijakan Privasi</a></li>
+                <li><a href="#">Tentang Kami </a></li>
+                <li><a href="privasi.php">Kebijakan Privasi</a></li>
               </ul>
             </div>
             <div class="col-md-4 mb-4 mb-md-0">
