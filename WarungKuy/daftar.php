@@ -128,7 +128,7 @@
             <button type="submit" class="btn btn-primary btn-block mb-4">Daftar</button>
 
             <!-- Register buttons -->
-            <div class="text-center">
+            <div class="text-center mb-5">
               <p>Sudah Punya Akun? <a href="Masuk.php">Masuk</a></p>
           </div>
         </div>
@@ -137,7 +137,7 @@
   </main><!-- End #main -->
 
   
-      <div class="row justify-content-center text-center">
+      <div class="row justify-content-center text-center mt-5 py-5">
         <div class="col-md-7">
           <p class="copyright">&copy; Copyright WarungKuy. All Rights Reserved</p>
           <div class="credits">

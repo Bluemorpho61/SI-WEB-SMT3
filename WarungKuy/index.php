@@ -80,7 +80,7 @@
               <h1 data-aos="fade-right">WarungKuy</h1>
               <p class="mb-5" data-aos="fade-right" data-aos-delay="100">Perluas referensi tempat bersantap anda!
                </p>
-              <p data-aos="fade-right" data-aos-delay="200" data-aos-offset="-500"><a href="regis.php" class="btn btn-outline-white">Daftar Sekarang</a></p>
+              <p data-aos="fade-right" data-aos-delay="200" data-aos-offset="-500"><a href="daftar.php" class="btn btn-outline-white">Daftar Sekarang</a></p>
             </div>
             <div class="col-lg-4 iphone-wrap">
               <img src="assets/img/phone.png" alt="Image" class="phone-1" data-aos="fade-right">
@@ -138,7 +138,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section>
 
       <div class="container">
         <div class="row justify-content-center text-center mb-5" data-aos="fade">
@@ -172,8 +172,7 @@
         </div>
       </div>
 
-
-    <!-- ======= Testimonials Section ======= -->
+ <!-- ======= Testimonials Section ======= -->
     <section class="section border-top border-bottom">
       <div class="container">
         <div class="row justify-content-center text-center mb-5">
@@ -198,7 +197,7 @@
                     </p>
                     <h3>Aplikasinya sangat bagus</h3>
                     <blockquote>
-                      <p>Aplikasinya sangat membantu saya yang kesulitan mencari informasi 
+                      <p>Aplikasinya sangat membantu saya yang kesulitan mencari informasi
                         tentang tempat makan yang enak didekat saya.</p>
                     </blockquote>
 
@@ -247,7 +246,7 @@
                     </p>
                     <h3>Aplikasi ini menolong saya</h3>
                     <blockquote>
-                      <p>Saya sekeluarga baru saja pindah ke Jember, 
+                      <p>Saya sekeluarga baru saja pindah ke Jember,
                         dan aplikasi ini membantu saya banget untuk memberitahu referensi tempat makan
                         terdekat yang enak</p>
                     </blockquote>
@@ -269,7 +268,6 @@
         </div>
       </div>
     </section><!-- End Testimonials Section -->
-
     <!-- ======= CTA Section ======= -->
     <section class="section cta-section">
       <div class="container">
@@ -278,7 +276,8 @@
             <h2>Mulai Telusuri Makanan Favoritmu</h2>
           </div>
           <div class="col-md-5 text-center text-md-end">
-            <p><a href="#" class="btn d-inline-flex align-items-center"><i class="bx bxl-Download"></i><span>Download Sekarang</span></a></p>
+            <p><a href="#" class="btn d-inline-flex align-items-center"><i class="bx bxl-Download"></i><span>Download
+                  Sekarang</span></a></p>
           </div>
         </div>
       </div>
@@ -301,8 +300,8 @@
             <div class="col-md-4 mb-4 mb-md-0">
               <h3>Navigasi</h3>
               <ul class="list-unstyled">
-                <li><a href="#">Home</a></li>
-                <li><a href="fitur.php">Fitur</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="#">Fitur</a></li>
                 <li><a href="Akun.php">Akun saya</a></li>
                 <li><a href="Masuk.php">Masuk</a></li>
               </ul>
@@ -324,7 +323,7 @@
         </div>
       </div>
 
-      <div class="row justify-content-center text-center">
+      <div class="row justify-content-center text-center py-5">
         <div class="col-md-7">
           <p class="copyright">&copy; Copyright WarungKuy. All Rights Reserved</p>
           <div class="credits">
@@ -336,7 +335,8 @@
     </div>
   </footer>
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/aos/aos.js"></script>

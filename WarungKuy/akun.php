@@ -139,15 +139,11 @@
               </div>
             </div>
           </form>
-        </div>
-      </div>
-      </div>
-      </div>
       </div>
     </section>
 
    
-      <div class="row justify-content-center text-center">
+      <div class="row justify-content-center text-center mt-5 py-5">
         <div class="col-md-7">
           <p class="copyright">&copy; Copyright WarungKuy. All Rights Reserved</p>
           <div class="credits">

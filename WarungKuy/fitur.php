@@ -299,7 +299,7 @@
         </div>
       </div>
 
-      <div class="row justify-content-center text-center">
+      <div class="row justify-content-center text-center py-5">
         <div class="col-md-7">
           <p class="copyright">&copy; Copyright WarungKuy. All Rights Reserved</p>
           <div class="credits">
