@@ -51,8 +51,8 @@
         <ul>
           <li><a class="" href="index.php">Home</a></li>
           <li><a href="fitur.php">Fitur</a></li>
-          <li><a href="Akun.php">Akun Saya</a></li>
-          <li><a href="Masuk.php">Masuk</a></li>
+          <li><a href="akun.php">Akun Saya</a></li>
+          <li><a href="masuk.php">Masuk</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -96,12 +96,12 @@
 
     <section class="">
       <div class="container">
-        <div class="row mb-5 align-items-end d-flex justify-content-center">
+        <div class="row my-5 align-items-end d-flex justify-content-center">
           <div class="col-6" data-aos="fade-up">
 
 
             <!-- Nama input -->
-            <div class="form-outline mb-4 ">
+            <div class="form-outline mt-5 mb-4 ">
               <input type="nama" id="loginfullname" class="form-control" />
               <label class="form-label" for="loginfullname">Nama Lengkap</label>
             </div>
@@ -128,7 +128,7 @@
             <button type="submit" class="btn btn-primary btn-block mb-4">Daftar</button>
 
             <!-- Register buttons -->
-            <div class="text-center mb-5">
+            <div class="text-center">
               <p>Sudah Punya Akun? <a href="Masuk.php">Masuk</a></p>
           </div>
         </div>
@@ -136,7 +136,6 @@
     </section>
   </main><!-- End #main -->
 
-  
       <div class="row justify-content-center text-center mt-5 py-5">
         <div class="col-md-7">
           <p class="copyright">&copy; Copyright WarungKuy. All Rights Reserved</p>

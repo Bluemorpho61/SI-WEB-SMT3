@@ -51,8 +51,8 @@
         <ul>
           <li><a class="" href="index.php">Home</a></li>
           <li><a class="active" href="fitur.php">Fitur</a></li>
-          <li><a href="Akun.php">Akun Saya </a></li>
-          <li><a href="Masuk.php">Masuk</a></li>
+          <li><a href="akun.php">Akun Saya </a></li>
+          <li><a href="masuk.php">Masuk</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -144,8 +144,45 @@
         </div>
       </div>
     </section>
+<!-- ======= Footer ======= -->
+<footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h3>WarungKuy</h3>
+          <p>Dapatkan “info tempat makan murah” hanya di
+            WarungKuy.</p>
+          </p>
+        </div>
+        <div class="col-md-7 ms-auto">
+          <div class="row site-section pt-0">
+            <div class="col-md-4 mb-4 mb-md-0">
+              <h3>Navigasi</h3>
+              <ul class="list-unstyled">
+                <li><a href="index.php">Home</a></li>
+                <li><a href="#">Fitur</a></li>
+                <li><a href="akun.php">Akun Saya</a></li>
+                <li><a href="masuk.php">Masuk</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4 mb-4 mb-md-0">
+              <h3>WarungKuy</h3>
+              <ul class="list-unstyled">
+                <li><a href="tentang.php">Tentang Kami </a></li>
+                <li><a href="privasi.php">Kebijakan Privasi</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4 mb-4 mb-md-0">
+              <h3>Download</h3>
+              <ul class="list-unstyled">
+                <li><a href="#">Download Sekarang</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <div class="row justify-content-center text-center mt-5 py-5">
+      <div class="row justify-content-center text-center py-5">
         <div class="col-md-7">
           <p class="copyright">&copy; Copyright WarungKuy. All Rights Reserved</p>
           <div class="credits">

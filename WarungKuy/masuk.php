@@ -51,8 +51,8 @@
         <ul>
           <li><a class="" href="index.php">Home</a></li>
           <li><a href="fitur.php">Fitur</a></li>
-          <li><a href="Akun.php">Akun Saya</a></li>
-          <li><a class="active" href="Masuk.php">Masuk</a></li>
+          <li><a href="akun.php">Akun Saya</a></li>
+          <li><a class="active" href="masuk.php">Masuk</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -96,12 +96,12 @@
 
     <section class="">
       <div class="container">
-        <div class="row mb-5 align-items-end d-flex justify-content-center">
+        <div class="row my-5 align-items-end d-flex justify-content-center">
           <div class="col-6" data-aos="fade-up">
 
 
             <!-- Email input -->
-            <div class="form-outline mb-4 ">
+            <div class="form-outline mt-5 mb-4 ">
               <input type="email" id="loginName" class="form-control" />
               <label class="form-label" for="loginName">Email</label>
             </div>
@@ -116,7 +116,7 @@
             <button type="submit" class="btn btn-primary btn-block mb-4">Masuk</button>
 
             <!-- Register buttons -->
-            <div class="text-center mb-5">
+            <div class="text-center">
               <p>Belum punya akun? <a href="daftar.php">Daftar</a></p>
             </div>
             </form>
@@ -126,29 +126,29 @@
     </section>
 
 
-    <div class="row justify-content-center text-center mt-5 py-5">
-      <div class="col-md-7">
-        <p class="copyright">&copy; Copyright WarungKuy. All Rights Reserved</p>
-        <div class="credits">
-          Designed by <a href=>WarungKuy Creative</a>
+      <div class="row justify-content-center text-center mt-5 py-5">
+        <div class="col-md-7">
+          <p class="copyright">&copy; Copyright WarungKuy. All Rights Reserved</p>
+          <div class="credits">
+            Designed by <a href=>WarungKuy Creative</a>
+          </div>
         </div>
       </div>
-    </div>
 
     </div>
-    </footer>
+  </footer>
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-        class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
-    <!-- Vendor JS Files -->
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
 
-    <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
 
 </body>
 

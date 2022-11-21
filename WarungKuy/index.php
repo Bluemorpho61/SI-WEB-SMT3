@@ -48,8 +48,8 @@
         <ul>
           <li><a class="active " href="index.php">Home</a></li>
           <li><a href="fitur.php">Fitur</a></li>
-          <li><a href="Akun.php">Akun Saya </a></li>
-          <li><a href="Masuk.php">Masuk</a></li>
+          <li><a href="akun.php">Akun Saya </a></li>
+          <li><a href="masuk.php">Masuk</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -300,10 +300,10 @@
             <div class="col-md-4 mb-4 mb-md-0">
               <h3>Navigasi</h3>
               <ul class="list-unstyled">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="#">Fitur</a></li>
-                <li><a href="Akun.php">Akun saya</a></li>
-                <li><a href="Masuk.php">Masuk</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="fitur.php">Fitur</a></li>
+                <li><a href="akun.php">Akun Saya</a></li>
+                <li><a href="masuk.php">Masuk</a></li>
               </ul>
             </div>
             <div class="col-md-4 mb-4 mb-md-0">
