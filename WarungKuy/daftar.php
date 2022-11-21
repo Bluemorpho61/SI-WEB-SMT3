@@ -96,7 +96,7 @@
 
     <section class="">
       <div class="container">
-        <div class="row my-5 align-items-end d-flex justify-content-center">
+        <div class="row mt-5 align-items-end d-flex justify-content-center">
           <div class="col-6" data-aos="fade-up">
 
 
@@ -136,7 +136,9 @@
     </section>
   </main><!-- End #main -->
 
-      <div class="row justify-content-center text-center mt-5 py-5">
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="row justify-content-center text-center py-5">
         <div class="col-md-7">
           <p class="copyright">&copy; Copyright WarungKuy. All Rights Reserved</p>
           <div class="credits">
@@ -144,7 +146,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </footer>
 

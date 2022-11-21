@@ -126,7 +126,9 @@
     </section>
 
 
-      <div class="row justify-content-center text-center mt-5 py-5">
+    <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="row justify-content-center text-center pb-5">
         <div class="col-md-7">
           <p class="copyright">&copy; Copyright WarungKuy. All Rights Reserved</p>
           <div class="credits">
@@ -134,9 +136,9 @@
           </div>
         </div>
       </div>
-
     </div>
   </footer>
+
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
