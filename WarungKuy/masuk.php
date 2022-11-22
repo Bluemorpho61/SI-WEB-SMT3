@@ -1,3 +1,40 @@
+<?php
+
+require_once("config/database.php");
+
+// include database.php
+
+session_start();
+
+if(isset($_SESSION["id"])){
+  header("Location: http://localhost/SI-WEB-SMT3/WarungKuy/akun.php");
+}
+
+if(isset($_POST["submit"])){
+        $email = trim($_POST['email']);
+        $pass = trim($_POST['password']);
+        
+        $sql = "SELECT * FROM tb_users WHERE email='$email' AND password='$pass'";
+        $result = mysqli_query($koneksi, $sql);
+        if ($result->num_rows) {
+            $row = mysqli_fetch_assoc($result);
+            //set session
+            $_SESSION["id"] = $row["id_user"];
+            $_SESSION["nama"] = $row["nama"];
+            // arahakan ke dashboard
+            header("Location: http://localhost/SI-WEB-SMT3/WarungKuy/akun.php");
+        }
+        else {
+            echo "<script>alert('Email atau Password Anda salah. Silahkan coba lagi!')</script>";
+        }
+    // cek user ada apa engga
+    // cek apakah password sama
+    // jika benr maka arahkan ke akun
+    //JIka salah tampilkan notif
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -98,22 +135,21 @@
       <div class="container">
         <div class="row mt-5 align-items-end d-flex justify-content-center">
           <div class="col-6" data-aos="fade-up">
-
-
+            <form action="" method="post">
             <!-- Email input -->
             <div class="form-outline mt-5 mb-4 ">
-              <input type="email" id="loginName" class="form-control" />
+              <input type="email" name="email" id="loginName" class="form-control" />
               <label class="form-label" for="loginName">Email</label>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
-              <input type="password" id="loginPassword" class="form-control" />
+              <input type="password" name="password" id="loginPassword" class="form-control" />
               <label class="form-label" for="loginPassword">Password</label>
             </div>
 
             <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block mb-4">Masuk</button>
+            <button type="submit" name="submit" class="btn btn-primary btn-block mb-4">Masuk</button>
 
             <!-- Register buttons -->
             <div class="text-center">

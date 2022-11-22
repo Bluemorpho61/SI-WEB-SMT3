@@ -1,3 +1,21 @@
+<?php
+
+require_once("config/database.php");
+
+session_start();
+
+if(!isset($_SESSION["id"])){
+  header("Location: http://localhost/SI-WEB-SMT3/WarungKuy/masuk.php");
+}
+
+$id = $_SESSION["id"];
+$sql = "SELECT * FROM tb_users WHERE id_user='$id'";
+$result = mysqli_query($koneksi, $sql);
+if ($result->num_rows){
+  $row = mysqli_fetch_assoc($result);
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,7 +103,7 @@
             <div class="row justify-content-center">
               <div class="col-md-7 text-center hero-text">
                 <h1 data-aos="fade-up" data-aos-delay="">Selamat Datang</h1>
-                <p class="mb-5" data-aos="fade-up" data-aos-delay="100">Halo, Raden Roni</p>
+                <p class="mb-5" data-aos="fade-up" data-aos-delay="100">Halo, <?= $row["nama"] ?></p>
               </div>
             </div>
           </div>
@@ -123,19 +141,23 @@
                 </div>
                 <div class="row mt-2">
                   <div class="col-md-12"><label class="labels mb-2">Nama</label><input type="text" class="form-control"
-                      placeholder="Nama Lengkap" value=""></div>
+                      placeholder="Nama Lengkap" value= "<?= $row['nama'] ?>" ></div>
                 </div>
                 <div class="row mt-3">
                   <div class="col-md-12"><label class="labels mb-2">Username</label><input type="text"
-                      class="form-control" placeholder="Username" value=""></div>
+                      class="form-control" placeholder="Username" value= "<?= $row['username'] ?>" ></div>
                 </div>
                 <div class="row mt-3">
                   <div class="col-md-12"><label class="labels mb-2">Email</label><input type="text" class="form-control"
-                      placeholder="Email" value=""></div>
+                      placeholder="Email" value=" <?= $row['email'] ?>"></div>
                 </div>
 
                 <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit" name="submit">Save
                     Profile</button></div>
+                    
+                <div class="text-center mt-5">
+              <p>Mau keluar? <a href="keluar.php">Keluar</a></p>
+            </div>
               </div>
             </div>
           </form>
