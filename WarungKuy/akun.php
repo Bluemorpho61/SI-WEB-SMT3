@@ -9,6 +9,21 @@ if(!isset($_SESSION["id"])){
 }
 
 $id = $_SESSION["id"];
+
+if(isset($_POST["update"])){
+
+  $nama = $_POST["nama"];
+  $username = $_POST['username'];
+  $email = $_POST['email'];
+  $sql = "UPDATE tb_users set nama = '$nama', username= '$username', email = '$email' WHERE id_user ='$id'";
+  $updated = mysqli_query($koneksi, $sql);
+  if($updated){
+    echo "<script>alert('Profile berhasil diperbarui!')</script>";
+  }else{
+    echo "<script>alert('Profile gagal diperbarui!')</script>";
+  }
+}
+
 $sql = "SELECT * FROM tb_users WHERE id_user='$id'";
 $result = mysqli_query($koneksi, $sql);
 if ($result->num_rows){
@@ -141,20 +156,20 @@ if ($result->num_rows){
                 </div>
                 <div class="row mt-2">
                   <div class="col-md-12"><label class="labels mb-2">Nama</label><input type="text" class="form-control"
-                      placeholder="Nama Lengkap" value= "<?= $row['nama'] ?>" ></div>
+                      placeholder="Nama Lengkap" value= "<?= $row['nama'] ?>" name="nama" ></div>
                 </div>
                 <div class="row mt-3">
                   <div class="col-md-12"><label class="labels mb-2">Username</label><input type="text"
-                      class="form-control" placeholder="Username" value= "<?= $row['username'] ?>" ></div>
+                      class="form-control" placeholder="Username" value= "<?= $row['username'] ?>" name="username"></div>
                 </div>
                 <div class="row mt-3">
                   <div class="col-md-12"><label class="labels mb-2">Email</label><input type="text" class="form-control"
-                      placeholder="Email" value=" <?= $row['email'] ?>"></div>
+                      placeholder="Email" value=" <?= $row['email'] ?>" name="email"></div>
                 </div>
 
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit" name="submit">Save
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit" name="update">Save
                     Profile</button></div>
-                    
+
                 <div class="text-center mt-5">
               <p>Mau keluar? <a href="keluar.php">Keluar</a></p>
             </div>

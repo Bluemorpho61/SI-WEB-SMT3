@@ -1,3 +1,21 @@
+<?php
+require_once("config/dabatabase.php");
+
+session_start();
+
+if(isset($_SESSION['$id'])){
+  header("Location: http://localhost/SI-WEB-SMT3/WarungKuy/masuk.php");
+}
+if(isset($_POST["submit"])){
+  
+  $nama = $_POST["nama"];
+  $username = $_POST["username"];
+  $email = $_POST["email"];
+  $password = $_POST["password"];
+
+  $sql = "INSERT INTO tb_users (nama, username, email, password, hak, foto) VALUES ('$nama', '$username', '$email', '$password', 'registeresi')";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
