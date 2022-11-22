@@ -15,7 +15,21 @@ if(isset($_POST["update"])){
   $nama = $_POST["nama"];
   $username = $_POST['username'];
   $email = $_POST['email'];
-  $sql = "UPDATE tb_users set nama = '$nama', username= '$username', email = '$email' WHERE id_user ='$id'";
+
+  $nama_foto = $_POST["foto-lama"];
+
+  // upload foto
+  if($_FILES["foto"]["error"] != 4){
+    // // hapus file , jika default jangan dihapus
+    if($nama_foto != "user-default.png"){
+      unlink("assets/img/".$nama_foto);
+    }
+    // upload file
+    move_uploaded_file($_FILES["foto"]["tmp_name"], "assets/img/".$_FILES["foto"]["name"]);
+    $nama_foto = $_FILES["foto"]["name"];
+  }
+
+  $sql = "UPDATE tb_users set nama = '$nama', username= '$username', email = '$email', foto = '$nama_foto' WHERE id_user ='$id'";
   $updated = mysqli_query($koneksi, $sql);
   if($updated){
     echo "<script>alert('Profile berhasil diperbarui!')</script>";
@@ -79,7 +93,7 @@ if ($result->num_rows){
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.php"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
-
+  
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class=" " href="index.php">Home</a></li>
@@ -146,12 +160,13 @@ if ($result->num_rows){
                   <div class="col-3">
                     <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                       <img class="rounded-circle" id="foto-profile" width="150px"
-                        src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                        src="http://localhost/SI-WEB-SMT3/WarungKuy/assets/img/<?= $row["foto"] ?>">
                     </div>
                   </div>
                   <div class="offset-2 col-7">
                     <label class="labels mb-2">Masukan Foto</label>
-                    <input type="file" class="form-control" placeholder="Email" value="" onchange="changeImage(this)">
+                    <input type="text" name="foto-lama" class="d-none" value="<?= $row["foto"] ?>">
+                    <input type="file" name="foto" class="form-control" placeholder="Email" value="" onchange="changeImage(this)">
                   </div>
                 </div>
                 <div class="row mt-2">

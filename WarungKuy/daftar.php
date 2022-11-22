@@ -1,5 +1,6 @@
 <?php
-require_once("config/dabatabase.php");
+
+require_once("config/database.php");
 
 session_start();
 
@@ -13,7 +14,13 @@ if(isset($_POST["submit"])){
   $email = $_POST["email"];
   $password = $_POST["password"];
 
-  $sql = "INSERT INTO tb_users (nama, username, email, password, hak, foto) VALUES ('$nama', '$username', '$email', '$password', 'registeresi')";
+  $sql = "INSERT INTO tb_users (nama, username, email, password, hak) VALUES ('$nama', '$username', '$email', '$password', 'registered')";
+  $registrasi= mysqli_query($koneksi, $sql);
+  if($registrasi){
+    echo "<script>alert('Berhasil Daftar!')</script>";
+  }else{
+    echo "<script>alert('Gagal Daftar!')</script>";
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -116,38 +123,40 @@ if(isset($_POST["submit"])){
       <div class="container">
         <div class="row mt-5 align-items-end d-flex justify-content-center">
           <div class="col-6" data-aos="fade-up">
+              <form action="http://localhost/SI-WEB-SMT3/WarungKuy/daftar.php" method="post">
 
+                <!-- Nama input -->
+                <div class="form-outline mt-5 mb-4 ">
+                  <input type="nama" id="loginfullname" class="form-control" name="nama" />
+                  <label class="form-label" for="loginfullname">Nama Lengkap</label>
+                </div>
 
-            <!-- Nama input -->
-            <div class="form-outline mt-5 mb-4 ">
-              <input type="nama" id="loginfullname" class="form-control" />
-              <label class="form-label" for="loginfullname">Nama Lengkap</label>
-            </div>
+                <!-- user input -->
+                <div class="form-outline mb-4 ">
+                  <input type="user" id="loginName" class="form-control" name="username"/>
+                  <label class="form-label" for="loginName">Username</label>
+                </div>
 
-            <!-- Email input -->
-            <div class="form-outline mb-4 ">
-              <input type="user" id="loginName" class="form-control" />
-              <label class="form-label" for="loginName">Username</label>
-            </div>
+                <!-- Email input -->
+                <div class="form-outline mb-4 ">
+                  <input type="email" id="loginName" class="form-control" name="email" />
+                  <label class="form-label" for="loginName">Email</label>
+                </div>
 
-            <!-- Email input -->
-            <div class="form-outline mb-4 ">
-              <input type="email" id="loginName" class="form-control" />
-              <label class="form-label" for="loginName">Email</label>
-            </div>
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                  <input type="password" id="loginPassword" class="form-control" name="password" />
+                  <label class="form-label" for="loginPassword">Password</label>
+                </div>
 
-            <!-- Password input -->
-            <div class="form-outline mb-4">
-              <input type="password" id="loginPassword" class="form-control" />
-              <label class="form-label" for="loginPassword">Password</label>
-            </div>
-
-            <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block mb-4">Daftar</button>
-
-            <!-- Register buttons -->
-            <div class="text-center">
-              <p>Sudah Punya Akun? <a href="Masuk.php">Masuk</a></p>
+                <!-- Submit button -->
+                <button type="submit" name="submit" class="btn btn-primary btn-block mb-4">Daftar</button>
+                <!-- Login buttons -->
+                <div class="text-center">
+                  <p>Sudah Punya Akun? <a href="Masuk.php">Masuk</a></p>
+                </div>
+                
+              </form>
           </div>
         </div>
       </div>

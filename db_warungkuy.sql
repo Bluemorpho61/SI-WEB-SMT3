@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2022 at 02:34 AM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 7.4.30
+-- Generation Time: Nov 22, 2022 at 10:03 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -90,20 +90,21 @@ CREATE TABLE `tb_tag` (
 
 CREATE TABLE `tb_users` (
   `id_user` int(5) NOT NULL,
+  `nama` varchar(64) NOT NULL,
   `username` char(11) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` char(20) NOT NULL,
   `hak` enum('admin','registered') NOT NULL,
-  `alamat` varchar(255) DEFAULT NULL,
-  `foto` mediumblob DEFAULT NULL
+  `foto` varchar(256) DEFAULT 'user-default.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_users`
 --
 
-INSERT INTO `tb_users` (`id_user`, `username`, `email`, `password`, `hak`, `alamat`, `foto`) VALUES
-(1, 'Budi', 'vanda10.dava@gmail.com', '12345', 'registered', '', '');
+INSERT INTO `tb_users` (`id_user`, `nama`, `username`, `email`, `password`, `hak`, `foto`) VALUES
+(1, 'Budianto Sugiarto Raharjo', 'Budi', ' vanda10.dava@gmail.com', '12345', 'registered', 'user-default.png'),
+(6, 'Roni Alexander', 'ronsx', '   Rons@gmail.com', '12345', 'registered', '16.jpeg');
 
 -- --------------------------------------------------------
 
@@ -201,7 +202,7 @@ ALTER TABLE `tb_tag`
 -- AUTO_INCREMENT for table `tb_users`
 --
 ALTER TABLE `tb_users`
-  MODIFY `id_user` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tb_warung`
