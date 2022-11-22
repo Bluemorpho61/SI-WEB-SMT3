@@ -1,6 +1,6 @@
 <?php
 require('../Config/koneksi.php');
-$query ="SELECT * ";
+
 ?>
 <link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="../View/js/bootstrap.min.js></script>

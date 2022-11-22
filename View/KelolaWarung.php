@@ -3,7 +3,7 @@ session_start();
 include('../Config/koneksi.php');
 if (!isset($_SESSION['id_user'])){
     $_SESSION['msg']='Anda harus login terlebih dahulu';
-    header("Location:../View/LoginPage.html");
+    header("Location:../View/Masuk.html");
 }
 //$query_nama ="SELECT nama_warung"
 ?>
@@ -152,8 +152,7 @@ if (!isset($_SESSION['id_user'])){
                                             <td><?php echo $data['username'] ?></td>
                                             <td>
                                                 <a class="btn btn-warning"
-                                                   href="EditInfoWarung.php?id=<?php echo $data['id_warung'] ?>">Edit
-                                                    Info</a>
+                                                   href="EditInfoWarung.php?id=<?php echo $data['id_warung'] ?>">Detail Info</a>
                                                 <a class="btn btn-danger"
                                                    href="../Controller/takedown.php?id=<?php echo $data['id_user']; ?>">Takedown</a>
                                             </td>

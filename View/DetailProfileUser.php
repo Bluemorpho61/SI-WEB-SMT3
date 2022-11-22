@@ -3,7 +3,7 @@ session_start();
 require('../Config/koneksi.php');
 if (!isset($_SESSION['id_user'])){
     $_SESSION['msg']='Anda harus login terlebih dahulu';
-    header("Location:../View/LoginPage.html");
+    header("Location:../View/Masuk.html");
 }
 $id_user = $_GET['id'];
 ?>
