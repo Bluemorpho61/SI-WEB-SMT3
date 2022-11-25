@@ -18,16 +18,23 @@ if (isset($_POST['submit'])){
         }
         if ($num !=0){
             if ($emailVal==$email &&$pasVal==$pass&&$level=='admin'){
-                //  header('Location: home.php?user_fullname='. urldecode($userName));
                $_SESSION['id_user']=$id;
                $_SESSION['username']=$username;
                 $_SESSION['email']=$emailVal;
                 $_SESSION['password']=$pasVal;
                 $_SESSION['hak']=$level;
                 header('Location: ../View/index.php');
-            }else{
+            } else if ($emailVal==$email &&$pasVal==$pass&&$level=='registered'){
+                $_SESSION['id']=$id;
+                $_SESSION['username']=$username;
+                $_SESSION['email']=$emailVal;
+                $_SESSION['password']=$pasVal;
+                $_SESSION['hak']=$level;
+                header('Location: ../View/akun.php?id='.$_SESSION['id']);
+            }
+            else{
                 $error='user atau password salah!!';
-                header('Location: ../View/LoginPage.html');
+                header('Location: ../View/masuk.php');
             }
         }else{
             $error='user tidak ditemukan';

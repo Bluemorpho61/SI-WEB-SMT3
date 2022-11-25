@@ -61,7 +61,7 @@ if (!isset($_SESSION['id_user'])){
         </button>
 
         <ul class="nav navbar-nav navbar-left navbar-top-links">
-            <li><a href="#"><i class="fa fa-home fa-fw"></i> Website</a></li>
+            <li><a href="../View/Home.php"><i class="fa fa-home fa-fw"></i> Website</a></li>
         </ul>
 
         <ul class="nav navbar-right navbar-top-links">
@@ -118,6 +118,9 @@ if (!isset($_SESSION['id_user'])){
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">Kelola Data Warung</h1>
+                    <a href="../View/TambahWarung.php">
+                    <button class="btn btn-primary fa fa-plus">Tambah Warung Baru</button>
+                    </a>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -154,7 +157,7 @@ if (!isset($_SESSION['id_user'])){
                                                 <a class="btn btn-warning"
                                                    href="EditInfoWarung.php?id=<?php echo $data['id_warung'] ?>">Detail Info</a>
                                                 <a class="btn btn-danger"
-                                                   href="../Controller/takedown.php?id=<?php echo $data['id_user']; ?>">Takedown</a>
+                                                   href="../Controller/delete_warung.php?id=<?php echo $data['id_warung']; ?>">Takedown</a>
                                             </td>
                                         </tr>
                                         <?php

@@ -3,9 +3,19 @@ session_start();
 require('../Config/koneksi.php');
 if (!isset($_SESSION['id_user'])){
     $_SESSION['msg']='Anda harus login terlebih dahulu';
-    header("Location:../View/Masuk.html");
+    header("Location:../View/Masuk.php");
 }
+$sesNama =$_SESSION['username'];
 $id_user = $_GET['id'];
+
+$query ="SELECT * FROM tb_users WHERE id_user=$id_user";
+$result =mysqli_query($koneksi, $query);
+$row =mysqli_fetch_assoc($result);
+$nama =$row['username'];
+$alamat=$row['alamat'];
+$hak =$row['hak'];
+$email =$row['email'];
+
 ?>
 
 <link href="css/startmin.css" rel="stylesheet">
@@ -37,7 +47,7 @@ $id_user = $_GET['id'];
     <ul class="nav navbar-right navbar-top-links">
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-user fa-fw"></i> <?php echo $_SESSION['username']; ?> <b class="caret"></b>
+                <i class="fa fa-user fa-fw"></i> <?php echo $sesNama; ?> <b class="caret"></b>
             </a>
             <ul class="dropdown-menu dropdown-user">
                 <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -64,7 +74,7 @@ $id_user = $_GET['id'];
                     <!-- /input-group -->
                 </li>
                 <li>
-                    <a href="../../index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
                 <li>
 
@@ -91,9 +101,7 @@ $id_user = $_GET['id'];
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h3 class="panel-title"><?php
-                    $query = "SELECT * FROM tb_users WHERE id_user=$id_user";
-                    $gnrt = mysqli_query($koneksi, $query);
-                    echo $gnrt->fetch_array()['username'];
+                   echo $nama;
                     ?></h3>
             </div>
             <div class="panel-body">
@@ -121,26 +129,20 @@ $id_user = $_GET['id'];
                             <tbody>
                             <tr>
                                 <td>Tipe User:</td>
-                                <td><?php  $type = "SELECT * FROM tb_users WHERE id_user=$id_user";
-                                    $genrte = mysqli_query($koneksi, $type);
-                                    echo $genrte->fetch_array()['hak'];?></td>
+                                <td><?php  echo $hak;?></td>
                             </tr>
                             <tr>
 
                             <tr>
                                 <td>Email</td>
                                 <td><?php
-                                    $qry = "SELECT * FROM tb_users WHERE id_user=$id_user";
-                                    $genrt = mysqli_query($koneksi, $query);
-                                    echo $genrt->fetch_array()['email'];
+                                    echo $email;
                                     ?></td>
                             </tr>
                             <tr>
                                 <td>Alamat</td>
                                 <td><a <?php
-                                    $qury = "SELECT * FROM tb_users WHERE id_user=$id_user";
-                                    $genert = mysqli_query($koneksi, $qury);
-                                    echo $genert->fetch_array()['alamat'];
+                                    echo $alamat;
                                     ?></a></td>
                             </tr>
 

@@ -4,7 +4,7 @@ include('../Config/koneksi.php');
 //$id = $_GET['username'];
 if (!isset($_SESSION['id_user'])){
 $_SESSION['msg']='Anda harus login terlebih dahulu';
-header("Location:../View/Masuk.html");
+header("Location:../View/Masuk.php");
 }
 $sesID =$_SESSION['id_user'];
 $sesNama =$_SESSION['username'];
@@ -65,7 +65,7 @@ $sesLvl =$_SESSION['hak'];
         </button>
 
         <ul class="nav navbar-nav navbar-left navbar-top-links">
-            <li><a href="#"><i class="fa fa-home fa-fw"></i> Website</a></li>
+            <li><a href="../View/Home.php"><i class="fa fa-home fa-fw"></i> Website</a></li>
         </ul>
 
         <ul class="nav navbar-right navbar-top-links">
@@ -74,7 +74,7 @@ $sesLvl =$_SESSION['hak'];
                     <i class="fa fa-user fa-fw"></i> <?php echo $_SESSION['username']; ?> <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    <li><a href="DetailProfileUser.php?id=<?php $_SESSION['id_user']; ?>"><i class="fa fa-user fa-fw"></i> User Profile</a>
                     </li>
                     <li class="divider"></li>
                     <li><a href="../Controller/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>

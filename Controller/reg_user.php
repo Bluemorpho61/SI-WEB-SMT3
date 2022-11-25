@@ -8,11 +8,11 @@ if (isset($_POST['submit'])) {
     $hak = 'registered';
     $query = "INSERT INTO tb_users VALUES ('','$username','$email','$password','registered','','')";
     mysqli_query($koneksi,$query);
-    header("Location:../View/LoginPage.html");
+    header("Location:../View/masuk.php");
 }else{
     ?><script>
         alert("Proses Registrasi Gagal");
-        header("Location:../View/Register.php");
+        header("Location:../View/daftar.php");
     </script><?php
 }
 //    if ($result =!mysqli_query($koneksi, $query)) {
