@@ -179,7 +179,7 @@ if ($result->num_rows){
                 </div>
                 <div class="row mt-3">
                   <div class="col-md-12"><label class="labels mb-2">Email</label><input type="text" class="form-control"
-                      placeholder="Email" value=" <?= $row['email'] ?>" name="email"></div>
+                      placeholder="Email" value=" <?= $row['email'] ?>" name="email" readonly></div>
                 </div>
 
                 <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit" name="update">Save

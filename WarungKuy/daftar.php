@@ -1,23 +1,25 @@
 <?php
 
 require_once("config/database.php");
+require_once("config/mail.php");
 
 session_start();
 
-if(isset($_SESSION['$id'])){
+if(isset($_SESSION["id"])){
   header("Location: http://localhost/SI-WEB-SMT3/WarungKuy/masuk.php");
 }
 if(isset($_POST["submit"])){
   
-  $nama = $_POST["nama"];
-  $username = $_POST["username"];
-  $email = $_POST["email"];
-  $password = $_POST["password"];
+  $nama = trim($_POST["nama"]);
+  $username = trim($_POST["username"]);
+  $email = trim($_POST["email"]);
+  $password = trim($_POST["password"]);
 
   $sql = "INSERT INTO tb_users (nama, username, email, password, hak) VALUES ('$nama', '$username', '$email', '$password', 'registered')";
   $registrasi= mysqli_query($koneksi, $sql);
   if($registrasi){
-    echo "<script>alert('Berhasil Daftar!')</script>";
+    sendMail($email, $nama);
+    echo "<script>alert('Berhasil Daftar! Silahkan cek email anda untuk melakukan Aktivasi akun!')</script>";
   }else{
     echo "<script>alert('Gagal Daftar!')</script>";
   }
@@ -128,7 +130,7 @@ if(isset($_POST["submit"])){
                 <!-- Nama input -->
                 <div class="form-outline mt-5 mb-4 ">
                   <input type="nama" id="loginfullname" class="form-control" name="nama" />
-                  <label class="form-label" for="loginfullname">Nama Lengkap</label>
+                  <label class="form-label" for="loginfullname">Nama</label>
                 </div>
 
                 <!-- user input -->

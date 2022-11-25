@@ -18,11 +18,16 @@ if(isset($_POST["submit"])){
         $result = mysqli_query($koneksi, $sql);
         if ($result->num_rows) {
             $row = mysqli_fetch_assoc($result);
-            //set session
-            $_SESSION["id"] = $row["id_user"];
-            $_SESSION["nama"] = $row["nama"];
-            // arahakan ke dashboard
-            header("Location: http://localhost/SI-WEB-SMT3/WarungKuy/akun.php");
+            if($row["status"] != 'blokir'){
+              //set session
+              $_SESSION["id"] = $row["id_user"];
+              $_SESSION["nama"] = $row["nama"];
+              // arahakan ke dashboard
+              header("Location: http://localhost/SI-WEB-SMT3/WarungKuy/akun.php");
+            }
+            else{
+              echo "<script>alert('Harap Konfirmasi terlebih dahulu!')</script>";
+            }
         }
         else {
             echo "<script>alert('Email atau Password Anda salah. Silahkan coba lagi!')</script>";
