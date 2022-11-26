@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!isset($_SESSION["id_user"])){
+if (!isset($_SESSION["id_user"])) {
     header("Location: ../View/masuk.php");
 }
 
@@ -9,25 +9,24 @@ include('../Config/koneksi.php');
 $id_warung = $_GET['id'];
 
 //Query SELECT ALL
-$query ="SELECT * FROM tb_warung WHERE id_warung=$id_warung";
+$query = "SELECT * FROM tb_warung WHERE id_warung=$id_warung";
 //Query SELECT Username Kontributor info warung
-$query_getNama="SELECT tb_warung.id_warung, tb_users.username FROM tb_warung, tb_users WHERE tb_warung.id_user = tb_users.id_user AND tb_warung.id_warung =$id_warung";
+$query_getNama = "SELECT tb_warung.id_warung, tb_users.username FROM tb_warung, tb_users WHERE tb_warung.id_user = tb_users.id_user AND tb_warung.id_warung =$id_warung";
 
 
 $resultNama = mysqli_query($koneksi, $query_getNama);
-$rowNama =mysqli_fetch_assoc($resultNama);
+$rowNama = mysqli_fetch_assoc($resultNama);
 
-$result =mysqli_query($koneksi, $query);
-$row =mysqli_fetch_assoc($result);
+$result = mysqli_query($koneksi, $query);
+$row = mysqli_fetch_assoc($result);
 
 //Data yang telah di fetch
 $nama_warung = $row['nama_warung'];
-$alamat_warung =$row['alamat'];
-$tgl_ditambahkan=$row['tanggal_ditambahkan'];
-$gambar =$row['foto'];
-$kontributor =$rowNama['username'];
-
-
+$alamat_warung = $row['alamat'];
+$tgl_ditambahkan = $row['tanggal_ditambahkan'];
+$gambar = $row['foto'];
+$kontributor = $rowNama['username'];
+$deskripsi = $row['deskripsi'];
 
 ?>
 <link href="../View/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -46,39 +45,47 @@ $kontributor =$rowNama['username'];
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../View/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="css/dataTables/dataTables.bootstrap.css" rel="stylesheet">
     <script src="../View/js/bootstrap.min.js"></script>
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 
 
 <hr>
 <div class="container bootstrap snippet">
     <div class="row">
-        <div class="col-sm-10"><h1><?php echo $nama_warung; ?></h1></div>
+        <div class="col-sm-10"><h1><?php echo $nama_warung; ?></h1>
+        </div>
 
     </div>
     <div class="row">
         <div class="col-sm-3"><!--left col-->
             <?php
-            $query_getFoto ="SELECT foto FROM tb_warung WHERE id_warung=$id_warung";
-            $hasil_queryFoto=mysqli_query($koneksi, $query_getFoto);
-            $rowGambar =mysqli_fetch_assoc($hasil_queryFoto);
-            print_r($test =$rowGambar['foto']);
+            $query_getFoto = "SELECT foto FROM tb_warung WHERE id_warung=$id_warung";
+            $hasil_queryFoto = mysqli_query($koneksi, $query_getFoto);
+            $rowGambar = mysqli_fetch_assoc($hasil_queryFoto);
+
             ?>
 
             <div class="text-center">
-                <img src="../Assets/img/<?php echo $rowGambar['foto']; ?>" class="avatar img-circle img-thumbnail" alt="avatar">
-                <h6>Upload a different photo...</h6>
-                <input type="file" class="text-center center-block file-upload">
-            </div></hr><br>
-
+                <img src="../Assets/img/<?php echo $rowGambar['foto']; ?>" class="avatar img-circle img-thumbnail"
+                     alt="avatar">
+            </div>
+            </hr><br>
 
             <ul class="list-group">
                 <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Komentar</strong></span> 125</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Favorit</strong></span> 13</li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Jumlah Rating Yang Diberikan</strong></span> 78</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Komentar</strong></span>
+                    125
+                </li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong><a href="EditInfoWarung.php">Favorit</a></strong></span>
+                    13
+                </li>
+                <li class="list-group-item text-right"><span
+                            class="pull-left"><strong><a
+                                    href="EditInfoWarung.php">Banyak Rating Yang Diberikan</a></strong></span> 78
+                </li>
             </ul>
-
 
 
         </div><!--/col-3-->
@@ -93,189 +100,107 @@ $kontributor =$rowNama['username'];
             <div class="tab-content">
                 <div class="tab-pane active" id="home">
                     <hr>
-                        <div class="form-group">
 
-                            <div class="col-xs-6">
-                                <p style="font-size: large; font-weight: bold">Nama Warung</p>
-                                <p style="font-size: medium; "><?php echo $nama_warung; ?></p>
+                    <div class="form-group">
+
+                        <div class="col-xs-6">
+                            <p style="font-size: large; font-weight: bold">Nama Warung</p>
+                            <p style="font-size: medium; ">
+                                <?php echo $nama_warung; ?></p>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="col-xs-6">
+                            <P STYLE="font-size: large; font-weight: bold">Alamat</P>
+                            <p style="font-size: medium">
+                                <?php echo $alamat_warung; ?></p>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-xs-6">
+                            <p style="font-size: large; font-weight: bold">Kontributor Info</p>
+                            <p style="font-size: medium"><?php echo $kontributor; ?></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <p style="font-size: large; font-weight: bold">Tanggal ditambahkan</p>
+                            <p style="font-size: medium"><?php echo $tgl_ditambahkan; ?></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <div>
+                                <p style="font-size: large; font-weight: bold">Deskripsi</p>
+                                <p style="font-size: medium">
+                                    <?php echo $deskripsi; ?></p>
+
                             </div>
                         </div>
-                        <div class="form-group">
+                    </div>
 
-                            <div class="col-xs-6">
-                                <P STYLE="font-size: large; font-weight: bold">Alamat</P>
-                                <p style="font-size: medium"><?php echo $alamat_warung;?></p>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <p style="font-size: large; font-weight: bold">Kontributor Info</p>
-                                <p style="font-size: medium"><?php echo $kontributor;?></p>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                <p style="font-size: large; font-weight: bold">Tanggal ditambahkan</p>
-                                <p style="font-size: medium"><?php echo $tgl_ditambahkan;?></p>
-                            </div>
-                        </div>
-
-
-
-
+                    <button class="btn btn-info btn-lg">Edit Info</button>
                     <hr>
+                    <br>
 
+                    <div>
+                        <H4>Foto Warung</H4>
+                        <button class="btn btn-primary ">Tambah foto warung</button>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <div id="dataTable_Wrapper" class="dataTables_wrapper form-inline">
+                                <div class="row">
+                                    <div id="dataTable_length" class="dataTables_length">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <table id="dataTables"
+                                                       class="table table-striped table-bordered table-hover"
+                                                       role="grid">
+                                                    <thead>
+                                                    <tr role="row">
+                                                        <th>ID</th>
+                                                        <th>Foto Warung</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <?php
+                                                    $queryGetFotoWarung = "SELECT * FROM tb_fotowarung WHERE id_warung=$id_warung";
+                                                    $resultFotoWarung = mysqli_query($koneksi, $queryGetFotoWarung);
+                                                    while ($data = mysqli_fetch_array($resultFotoWarung, MYSQLI_ASSOC)) {
+                                                        ?>
+                                                        <tr>
+                                                            <td><?php echo $data['id_fotowarung']; ?></td>
+                                                            <td>
+                                                                <img style="width: 410px; height: 200px;"
+                                                                     src="../Assets/img/<?php echo $data['foto_warung']; ?>">
+                                                                <button class="btn btn-danger">Hapus Gambar</button>
+                                                            </td>
+                                                        </tr>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div><!--/tab-pane-->
-                <div class="tab-pane" id="messages">
-
-                    <h2></h2>
-
-                    <hr>
-                    <form class="form" action="##" method="post" id="registrationForm">
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="first_name"><h4>First name</h4></label>
-                                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="last_name"><h4>Last name</h4></label>
-                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="phone"><h4>Phone</h4></label>
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                <label for="mobile"><h4>Mobile</h4></label>
-                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="email"><h4>Email</h4></label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="email"><h4>Location</h4></label>
-                                <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="password"><h4>Password</h4></label>
-                                <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="password2"><h4>Verify</h4></label>
-                                <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <br>
-                                <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
-                            </div>
-                        </div>
-                    </form>
-
-                </div><!--/tab-pane-->
-                <div class="tab-pane" id="settings">
+            </div>
+            </div><!--/col-9-->
+        </div><!--/row-->
+    </div>
 
 
-                    <hr>
-                    <form class="form" action="##" method="post" id="registrationForm">
-                        <div class="form-group">
 
-                            <div class="col-xs-6">
-                                <label for="first_name"><h4>First name</h4></label>
-                                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="last_name"><h4>Last name</h4></label>
-                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="phone"><h4>Phone</h4></label>
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-6">
-                                <label for="mobile"><h4>Mobile</h4></label>
-                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="email"><h4>Email</h4></label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="email"><h4>Location</h4></label>
-                                <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="password"><h4>Password</h4></label>
-                                <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="password2"><h4>Verify</h4></label>
-                                <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <br>
-                                <button class="btn btn-lg btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                <!--<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>-->
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-            </div><!--/tab-pane-->
-        </div><!--/tab-content-->
-
-    </div><!--/col-9-->
-</div><!--/row-->
