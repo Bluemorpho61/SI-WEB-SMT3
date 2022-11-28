@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2022 at 02:04 AM
+-- Generation Time: Nov 28, 2022 at 05:49 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 7.4.30
 
@@ -29,8 +29,16 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tb_deskripsi` (
   `id_deskrpsi` int(11) NOT NULL,
-  `deskripsi` mediumtext NOT NULL
+  `deskripsi` mediumtext NOT NULL,
+  `id_warung` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_deskripsi`
+--
+
+INSERT INTO `tb_deskripsi` (`id_deskrpsi`, `deskripsi`, `id_warung`) VALUES
+(1, 'tes deskrpsi menu', 7);
 
 -- --------------------------------------------------------
 
@@ -45,6 +53,13 @@ CREATE TABLE `tb_fotomenu` (
   `id_warung` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tb_fotomenu`
+--
+
+INSERT INTO `tb_fotomenu` (`id_fotomenu`, `foto_menu`, `id_deskrpsi`, `id_warung`) VALUES
+(2, 'kue pukis keju.jpg', 1, 7);
+
 -- --------------------------------------------------------
 
 --
@@ -56,6 +71,13 @@ CREATE TABLE `tb_fotowarung` (
   `foto_warung` varchar(256) NOT NULL,
   `id_warung` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_fotowarung`
+--
+
+INSERT INTO `tb_fotowarung` (`id_fotowarung`, `foto_warung`, `id_warung`) VALUES
+(6, '2022-09-22.png', 7);
 
 -- --------------------------------------------------------
 
@@ -104,7 +126,7 @@ CREATE TABLE `tb_users` (
 --
 
 INSERT INTO `tb_users` (`id_user`, `username`, `email`, `password`, `hak`, `alamat`, `foto`) VALUES
-(9, 'Jamal', 'jamal99@gmail.com', '123456', 'admin', 'Stb', NULL);
+(9, 'Jamar', 'jamal99@gmail.com', '123456', 'admin', 'STB', '2022-09-08.png');
 
 -- --------------------------------------------------------
 
@@ -128,7 +150,8 @@ CREATE TABLE `tb_warung` (
 
 INSERT INTO `tb_warung` (`id_warung`, `nama_warung`, `alamat`, `deskripsi`, `foto`, `id_user`, `tanggal_ditambahkan`) VALUES
 (3, 'Warung LGW', 'JBR', 'Favorit', 'Array', 9, '2022-11-24 18:48:05'),
-(7, 'dada', 'dawd', 'wdaw', '2022-09-22.png', 9, '2022-11-25 02:04:01');
+(7, 'dada', 'dawd', 'wdaw', '2022-09-22.png', 9, '2022-11-25 02:04:01'),
+(8, 'dsds', 'dwadwa', 'vsdvdsvds', '2022-10-14.png', 9, '2022-11-26 02:13:04');
 
 --
 -- Indexes for dumped tables
@@ -138,7 +161,8 @@ INSERT INTO `tb_warung` (`id_warung`, `nama_warung`, `alamat`, `deskripsi`, `fot
 -- Indexes for table `tb_deskripsi`
 --
 ALTER TABLE `tb_deskripsi`
-  ADD PRIMARY KEY (`id_deskrpsi`);
+  ADD PRIMARY KEY (`id_deskrpsi`),
+  ADD KEY `id_warung` (`id_warung`);
 
 --
 -- Indexes for table `tb_fotomenu`
@@ -191,19 +215,19 @@ ALTER TABLE `tb_warung`
 -- AUTO_INCREMENT for table `tb_deskripsi`
 --
 ALTER TABLE `tb_deskripsi`
-  MODIFY `id_deskrpsi` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_deskrpsi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tb_fotomenu`
 --
 ALTER TABLE `tb_fotomenu`
-  MODIFY `id_fotomenu` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_fotomenu` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_fotowarung`
 --
 ALTER TABLE `tb_fotowarung`
-  MODIFY `id_fotowarung` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_fotowarung` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tb_log_comment_user`
@@ -221,11 +245,17 @@ ALTER TABLE `tb_users`
 -- AUTO_INCREMENT for table `tb_warung`
 --
 ALTER TABLE `tb_warung`
-  MODIFY `id_warung` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_warung` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `tb_deskripsi`
+--
+ALTER TABLE `tb_deskripsi`
+  ADD CONSTRAINT `tb_deskripsi_ibfk_1` FOREIGN KEY (`id_warung`) REFERENCES `tb_warung` (`id_warung`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tb_fotomenu`
