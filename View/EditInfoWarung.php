@@ -5,6 +5,10 @@ if (!isset($_SESSION["id_user"])) {
     header("Location: ../View/masuk.php");
 }
 
+if (!isset($_GET['id'])){
+    header("Location:../View/KelolaWarung.php");
+}
+
 include('../Config/koneksi.php');
 $id_warung = $_GET['id'];
 
@@ -27,6 +31,28 @@ $tgl_ditambahkan = $row['tanggal_ditambahkan'];
 $gambar = $row['foto'];
 $kontributor = $rowNama['username'];
 $deskripsi = $row['deskripsi'];
+
+
+if (isset($_POST['simpan_fotoWarung'])) {
+    $nama_foto = $_FILES['foto']['name'];
+    $temp_name = $_FILES['foto']['tmp_name'];
+    $folder = "../Assets/img/" . $nama_foto;
+    $query = "INSERT INTO tb_fotowarung VALUES (NULL,'$nama_foto',$id_warung)";
+    mysqli_query($koneksi, $query);
+    if (move_uploaded_file($temp_name, $folder)) {
+        ?>
+        <script>
+            alert("Tambah foto warung berhasil!")
+        </script><?php
+        header("Location:../View/EditInfoWarung.php?id=$id_warung");
+    } else {
+        ?>
+        <script>
+            alert("Tambah foto warung gagal");
+        </script><?php
+    }
+}
+
 
 ?>
 <link href="../View/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -150,12 +176,16 @@ $deskripsi = $row['deskripsi'];
                     <hr>
                     <br>
 
-                    <div>
-                        <H4>Foto Warung</H4>
-                        <button class="btn btn-primary ">Tambah foto warung</button>
+                    <div id="tambah-foto">
+                        <H4 id="tambah-foto">Foto Warung</H4>
+                        <form class="form" method="post"  enctype="multipart/form-data">
+                            <label >Tambah foto</label>
+                            <input  name="foto" type="file" class="btn btn-primary">
+                            <button name="simpan_fotoWarung" type="submit">Simpan Foto</button>
+                        </form>
                     </div>
                     <div class="panel-body">
-                        <div class="table-responsive">
+                        <div class="table-responsive h-50" style="max-height: 500px">
                             <div id="dataTable_Wrapper" class="dataTables_wrapper form-inline">
                                 <div class="row">
                                     <div id="dataTable_length" class="dataTables_length">
@@ -181,7 +211,7 @@ $deskripsi = $row['deskripsi'];
                                                             <td>
                                                                 <img style="width: 410px; height: 200px;"
                                                                      src="../Assets/img/<?php echo $data['foto_warung']; ?>">
-                                                                <button class="btn btn-danger">Hapus Gambar</button>
+                                                                <a href="../Controller/delete_fotowarung.php?foto=<?php echo $data['id_fotowarung'];?>"><button class="btn btn-danger" name="hapus_gambar_warung">Hapus Gambar</button></a>
                                                             </td>
                                                         </tr>
                                                         <?php
@@ -196,11 +226,66 @@ $deskripsi = $row['deskripsi'];
                             </div>
                         </div>
                     </div>
-                </div><!--/tab-pane-->
-            </div>
-            </div><!--/col-9-->
-        </div><!--/row-->
-    </div>
+
+
+                    <!--                    Foto Menu-->
+                    <h4>Foto Menu</h4>
+                    <button class="btn btn-primary">Tambah Foto Menu</button>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <div id="dataTable_Wrapper" class="dataTables_wrapper form-inline">
+                                <div class="row">
+                                    <div id="dataTable_length" class="dataTables_length">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <table id="dataTables"
+                                                       class="table table-striped table-bordered table-hover"
+                                                       role="grid">
+                                                    <thead>
+                                                    <tr role="row">
+                                                        <th>ID</th>
+                                                        <th>Foto Menu</th>
+                                                        <th>Deskripsi</th>
+                                                        <th>Aksi</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <?php
+                                                    $queryGetFotoMenu = "SELECT * FROM tb_fotomenu WHERE id_warung=$id_warung";
+                                                    $resultFotoMenu = mysqli_query($koneksi, $queryGetFotoMenu);
+                                                    while ($dataMenu = mysqli_fetch_array($resultFotoMenu, MYSQLI_ASSOC)) {
+                                                        ?>
+                                                        <tr>
+                                                            <td><?php echo $dataMenu['id_fotomenu']; ?></td>
+                                                            <td>
+                                                                <img style="width: 200px; height: 150px;"
+                                                                     src="../Assets/img/<?php echo $dataMenu['foto_menu']; ?>">
+                                                            </td>
+                                                            <td>
+                                                                test
+                                                            </td>
+                                                            <td>
+                                                                <button class="btn btn-danger">Hapus</button>
+                                                            </td>
+                                                        </tr>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--/tab-pane-->
+        </div>
+    </div><!--/col-9-->
+</div><!--/row-->
+</div>
 
 
 

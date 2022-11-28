@@ -1,66 +1,69 @@
 <?php
 
 
-//
-//require_once("../Config/koneksi.php");
-//
-//session_start();
-//
-//if(!isset($_SESSION["id"])){
-//  header("Location: ../View/masuk.php");
-//}
-//
-//$id = $_SESSION["id"];
-//
-//if(isset($_POST["update"])){
-//
-//  $nama = $_POST["nama"];
-//  $username = $_POST['username'];
-//  $email = $_POST['email'];
-//
-//  $nama_foto = $_POST["foto-lama"];
-//
-//  // upload foto
-//  if($_FILES["foto"]["error"] != 4){
-//    // // hapus file , jika default jangan dihapus
-//    if($nama_foto != "user-default.png"){
-//      unlink("assets/img/".$nama_foto);
-//    }
-//    // upload file
-//    move_uploaded_file($_FILES["foto"]["tmp_name"], "assets/img/".$_FILES["foto"]["name"]);
-//    $nama_foto = $_FILES["foto"]["name"];
-//  }
-//
-//  $sql = "UPDATE tb_users set nama = '$nama', username= '$username', email = '$email', foto = '$nama_foto' WHERE id_user ='$id'";
-//  $updated = mysqli_query($koneksi, $sql);
-//  if($updated){
-//    echo "<script>alert('Profile berhasil diperbarui!')</script>";
-//  }else{
-//    echo "<script>alert('Profile gagal diperbarui!')</script>";
-//  }
-//}
-//
-//$sql = "SELECT * FROM tb_users WHERE id_user='$id'";
-//$result = mysqli_query($koneksi, $sql);
-//if ($result->num_rows){
-//  $row = mysqli_fetch_assoc($result);
-//}
-//
-//
+
+require_once("../Config/koneksi.php");
+
 session_start();
-include ('../Config/koneksi.php');
+
 if(!isset($_SESSION["id"])){
   header("Location: ../View/masuk.php");
 }
-$id =$_GET['id'];
 
-$query="SELECT * FROM tb_users WHERE id_user=$id";
+$id = $_SESSION["id"];
+
+$query ="SELECT * FROM tb_users WHERE id_user=$id";
 $result = mysqli_query($koneksi, $query);
-$row = mysqli_fetch_assoc($result);
+$row=mysqli_fetch_assoc($result);
+$username=$row['username'];
+$res_Email=$row['email'];
 
-echo print_r($username =$row['username']);
-echo print_r($email=$row['email']);
-$foto =$row['foto'];
+
+if(isset($_POST["update"])){
+
+
+  $username = $_POST['username'];
+  $email = $_POST['email'];
+
+  $nama_foto = $_POST["foto-lama"];
+
+  // upload foto
+  if($_FILES["foto"]["error"] != 4){
+    // // hapus file , jika default jangan dihapus
+    if($nama_foto != "user-default.png"){
+      unlink("../Assets/img/".$nama_foto);
+    }
+    // upload file
+    move_uploaded_file($_FILES["foto"]["tmp_name"], "../Assets/img/".$_FILES["foto"]["name"]);
+    $nama_foto = $_FILES["foto"]["name"];
+  }
+
+  $sql = "UPDATE tb_users set  username= '$username', email = '$email', foto = '$nama_foto' WHERE id_user ='$id'";
+  $updated = mysqli_query($koneksi, $sql);
+  if($updated){
+    echo "<script>alert('Profile berhasil diperbarui!')</script>";
+  }else{
+    echo "<script>alert('Profile gagal diperbarui!')</script>";
+  }
+}
+
+
+
+
+//session_start();
+//include ('../Config/koneksi.php');
+//if(!isset($_SESSION["id"])){
+//  header("Location: ../View/masuk.php");
+//}
+//$id =$_GET['id'];
+//
+//$query="SELECT * FROM tb_users WHERE id_user=$id";
+//$result = mysqli_query($koneksi, $query);
+//$row = mysqli_fetch_assoc($result);
+//
+//echo print_r($username =$row['username']);
+//echo print_r($email=$row['email']);
+//$foto =$row['foto'];
 
 ?>
 <!DOCTYPE html>
@@ -168,7 +171,7 @@ $foto =$row['foto'];
           </div>
         </div>
         <div>
-          <form method="post" class="row justify-content-center" enctype="multipart/form-data" action="../Controller/update_profile.php">
+          <form method="post" class="row justify-content-center" enctype="multipart/form-data" action="">
             <div class="col-md-5 border-right">
               <div class="p-3">
                 <div class="d-flex justify-content-between align-items-center mb-3">
@@ -183,7 +186,7 @@ $foto =$row['foto'];
                   </div>
                   <div class="offset-2 col-7">
                     <label class="labels mb-2">Masukan Foto</label>
-                    <input type="text" name="foto-lama" class="d-none" value="data:image;base64,.'<?php base64_encode($foto); ?>">
+                    <input type="text" name="foto-lama" class="d-none" value="<?= $row['foto']?>">
                     <input type="file" name="foto" class="form-control" placeholder="Email" value="" onchange="changeImage(this)">
                   </div>
                 </div>
@@ -195,7 +198,7 @@ $foto =$row['foto'];
                 </div>
                 <div class="row mt-3">
                   <div class="col-md-12"><label class="labels mb-2">Email</label><input type="text" class="form-control"
-                      placeholder="Email" value="<?php echo $email; ?>" name="email"></div>
+                      placeholder="Email" value="<?php echo $res_Email; ?>" name="email"></div>
                 </div>
 
                 <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit" name="update">Save

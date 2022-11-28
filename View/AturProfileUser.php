@@ -7,26 +7,48 @@ if (!isset($_SESSION['id_user'])) {
     header("Location:../View/Masuk.php");
 }
 
-$sesID = $_SESSION['id_user'];
-print_r($sesID);
+$getID=$_GET['id'];
+print_r($getID);
 
+
+$sql ="SELECT * FROM tb_users WHERE id_user=$getID";
+$result = mysqli_query($koneksi, $sql);
+$row =mysqli_fetch_assoc($result);
+
+?><script>
+
+</script><?php
 if (isset($_POST['submit'])) {
-    $tgl = date('Y-m-d H:i:s');
-    $namaWarung = $_POST['nama_warung'];
-    $alamatWarung = $_POST['alamat_warung'];
-    $deskripsi = $_POST['deskripsi'];
+    //$tgl = date('Y-m-d H:i:s');
+    $input_username =$_POST['username'];
+    if ($input_username==""){
+        $input_username=$_POST['username-old'];
+    }
+    $input_email =$_POST['email'];
+    if ($input_email==""){
+        $input_email=$_POST['email-old'];
+    }
+    $input_password=$_POST['password'];
+    if ($input_password==""){
+        $input_password=$_POST['password-old'];
+    }
+    $input_alamat=$_POST['alamat'];
+    if ($input_alamat==""){
+        $input_password=$_POST['alamat-old'];
+    }
+
     $filename =$_FILES['foto']['name'];
     $temp_name =$_FILES['foto']['tmp_name'];
     $folder ="../Assets/img/".$filename;
 
 
-    $query ="INSERT INTO tb_warung VALUES (NULL,'$namaWarung','$alamatWarung','$deskripsi','$filename','$sesID','$tgl')";
+    $query ="UPDATE tb_users SET username='$input_username',email='$input_email',password='$input_password',alamat='$input_alamat',foto='$filename' WHERE id_user=$getID";
     mysqli_query($koneksi, $query);
-
+    header('Location:../View/tables.php');
     if(move_uploaded_file($temp_name,$folder)){
-        ?><script>alert("Upload data berhasil")</script><?php
+        ?><script>alert("Update data berhasil")</script><?php
     }else{
-        ?><script>alert("Upload data gagal")</script><?php
+
     }
 
 //    $query = "INSERT into tb_warung (id_warung, nama_warung, alamat, foto, id_user, tanggal_ditambahkan) VALUES
@@ -58,7 +80,7 @@ if (isset($_POST['submit'])) {
 <hr>
 <div class="container bootstrap snippet">
     <div class="row">
-        <div class="col-sm-10"><h1>Tambah Info Warung Baru</h1></div>
+        <div class="col-sm-10"><h1>Edit Info User</h1></div>
         <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image"
                                                                        class="img-circle img-responsive"
                                                                        src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a>
@@ -84,12 +106,12 @@ if (isset($_POST['submit'])) {
                             }
                         }
                     </script>
-                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"
+                    <img src="../Assets/img/<?php echo $row['foto']; ?>" class="avatar img-circle img-thumbnail"
                          id="coy" alt="avatar">
                     <h6>Silahkan pilih foto profil utama warung</h6>
 
 
-                    <input type="file" name="foto" class="text-center center-block file-upload"
+                    <input type="file" name="foto" value="<?php $row['foto'] ?>" class="text-center center-block file-upload"
                            onchange="readUrl(this)">
 
                 </div>
@@ -110,16 +132,18 @@ if (isset($_POST['submit'])) {
 
                             <div class="col-xs-6">
                                 <label for="first_name"><h4>Username</h4></label>
-                                <input type="text" class="form-control" name="username" id="first_name"
-                                       placeholder="Nama Warung" title="enter your first name if any.">
+                                <input type="text" class="form-control" name="username" id="first_name" value="<?php echo $row['username'];?>"
+                                       placeholder="<?php echo $row['username']; ?>" title="enter your first name if any.">
+                                <input type="hidden" name="username-old" value="<?php $row['username'] ?>">
                             </div>
                         </div>
                         <div class="form">
 
                             <div class="col-xs-6">
                                 <label for="last_name"><h4>Email</h4></label>
-                                <input type="text" class="form-control" name="email" id="last_name"
-                                       placeholder="last name" title="enter your last name if any.">
+                                <input type="text" class="form-control" name="email" id="last_name" value="<?php echo $row['email']; ?>"
+                                       placeholder="<?php echo  $row['email'] ?>" title="enter your last name if any.">
+                                <input type="hidden" name="email-old" value="<?php $row['email'] ?>">
                             </div>
                         </div>
 
@@ -127,7 +151,8 @@ if (isset($_POST['submit'])) {
 
                             <div class="col-xs-6">
                                 <label for="phone"><h4>Password</h4></label>
-                                <input type="text" class="form-control" id="phone" name="deskripsi"></input>
+                                <input type="text" class="form-control" id="phone" placeholder="<?php echo $row['password'];?>" value="<?php echo $row['password'] ?>" name="password"></input>
+                                <input type="hidden" name="password-old" value="<?php $row['password']?>">
                             </div>
                         </div>
 
@@ -135,7 +160,8 @@ if (isset($_POST['submit'])) {
 
                             <div class="col-xs-6">
                                 <label for="phone"><h4>Alamat</h4></label>
-                                < type="text" class="form-control" id="phone" name="deskripsi"></>
+                               <input type="text" class="form-control" name="alamat" placeholder="<?php echo $row['alamat'];?>" value="<?php echo $row['alamat'] ?>">
+                                <input type="hidden" name="alamat-old" value="<?php $row['alamat']?>">
                             </div>
                         </div>
 

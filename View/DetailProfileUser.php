@@ -109,7 +109,7 @@ $email =$row['email'];
                     <?php
                     ?>
                     <div class="col-md-3 col-lg-3 " align="center"><img alt="User Pic"
-                                                                        src="../Controller/getImage.php?id=<?php echo $id_user ?>"
+                                                                        src="../Assets/img/<?php echo $row['foto'];?>"
                                                                         class="img-circle img-responsive"></div>
 
                     <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
@@ -141,11 +141,9 @@ $email =$row['email'];
                             </tr>
                             <tr>
                                 <td>Alamat</td>
-                                <td><a <?php
+                                <td><?php
                                     echo $alamat;
-                                    ?></a></td>
-                            </tr>
-
+                                    ?></td>
                             </tr>
 
                             </tbody>
