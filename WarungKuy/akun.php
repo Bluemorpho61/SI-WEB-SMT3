@@ -12,9 +12,8 @@ $id = $_SESSION["id"];
 
 if(isset($_POST["update"])){
 
-  $nama = $_POST["nama"];
-  $username = $_POST['username'];
-  $email = $_POST['email'];
+  $username = trim($_POST['username']);
+  $email = trim($_POST['email']);
 
   $nama_foto = $_POST["foto-lama"];
 
@@ -29,7 +28,7 @@ if(isset($_POST["update"])){
     $nama_foto = $_FILES["foto"]["name"];
   }
 
-  $sql = "UPDATE tb_users set nama = '$nama', username= '$username', email = '$email', foto = '$nama_foto' WHERE id_user ='$id'";
+  $sql = "UPDATE tb_users set username= '$username', email = '$email', foto = '$nama_foto' WHERE id_user ='$id'";
   $updated = mysqli_query($koneksi, $sql);
   if($updated){
     echo "<script>alert('Profile berhasil diperbarui!')</script>";
@@ -132,7 +131,7 @@ if ($result->num_rows){
             <div class="row justify-content-center">
               <div class="col-md-7 text-center hero-text">
                 <h1 data-aos="fade-up" data-aos-delay="">Selamat Datang</h1>
-                <p class="mb-5" data-aos="fade-up" data-aos-delay="100">Halo, <?= $row["nama"] ?></p>
+                <p class="mb-5" data-aos="fade-up" data-aos-delay="100">Halo, <?= $row["username"] ?></p>
               </div>
             </div>
           </div>
@@ -169,17 +168,13 @@ if ($result->num_rows){
                     <input type="file" name="foto" class="form-control" placeholder="Email" value="" onchange="changeImage(this)">
                   </div>
                 </div>
-                <div class="row mt-2">
-                  <div class="col-md-12"><label class="labels mb-2">Nama</label><input type="text" class="form-control"
-                      placeholder="Nama Lengkap" value= "<?= $row['nama'] ?>" name="nama" ></div>
-                </div>
                 <div class="row mt-3">
                   <div class="col-md-12"><label class="labels mb-2">Username</label><input type="text"
                       class="form-control" placeholder="Username" value= "<?= $row['username'] ?>" name="username"></div>
                 </div>
                 <div class="row mt-3">
                   <div class="col-md-12"><label class="labels mb-2">Email</label><input type="text" class="form-control"
-                      placeholder="Email" value=" <?= $row['email'] ?>" name="email" readonly></div>
+                      placeholder="Email" value= "<?= $row['email'] ?>" name="email" readonly></div>
                 </div>
 
                 <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit" name="update">Save

@@ -10,12 +10,11 @@ if(isset($_SESSION["id"])){
 }
 if(isset($_POST["submit"])){
   
-  $nama = trim($_POST["nama"]);
   $username = trim($_POST["username"]);
   $email = trim($_POST["email"]);
   $password = trim($_POST["password"]);
 
-  $sql = "INSERT INTO tb_users (nama, username, email, password, hak) VALUES ('$nama', '$username', '$email', '$password', 'registered')";
+  $sql = "INSERT INTO tb_users (username, email, password, hak) VALUES ('$username', '$email', '$password', 'registered')";
   $registrasi= mysqli_query($koneksi, $sql);
   if($registrasi){
     sendMail($email, $nama);
@@ -126,12 +125,6 @@ if(isset($_POST["submit"])){
         <div class="row mt-5 align-items-end d-flex justify-content-center">
           <div class="col-6" data-aos="fade-up">
               <form action="http://localhost/SI-WEB-SMT3/WarungKuy/daftar.php" method="post">
-
-                <!-- Nama input -->
-                <div class="form-outline mt-5 mb-4 ">
-                  <input type="nama" id="loginfullname" class="form-control" name="nama" />
-                  <label class="form-label" for="loginfullname">Nama</label>
-                </div>
 
                 <!-- user input -->
                 <div class="form-outline mb-4 ">
