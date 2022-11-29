@@ -6,7 +6,7 @@ if (!isset($_SESSION['id_user'])){
 $_SESSION['msg']='Anda harus login terlebih dahulu';
 header("Location:../View/Masuk.php");
 }
-$sesID =$_SESSION['id_user'];
+print_r($sesID =$_SESSION['id_user']);
 $sesNama =$_SESSION['username'];
 $sesLvl =$_SESSION['hak'];
 
@@ -74,7 +74,7 @@ $sesLvl =$_SESSION['hak'];
                     <i class="fa fa-user fa-fw"></i> <?php echo $_SESSION['username']; ?> <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="DetailProfileUser.php?id=<?php $_SESSION['id_user']; ?>"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    <li><a href="DetailProfileUser.php?id=<?php echo $sesID;?>"><i class="fa fa-user fa-fw"></i> User Profile</a>
                     </li>
                     <li class="divider"></li>
                     <li><a href="../Controller/logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -87,17 +87,7 @@ $sesLvl =$_SESSION['hak'];
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
-                    <li class="sidebar-search">
-                        <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search...">
-                            <span class="input-group-btn">
-                                        <button class="btn btn-primary" type="button">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                </span>
-                        </div>
-                        <!-- /input-group -->
-                    </li>
+
                     <li>
                         <a href="index.php" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>

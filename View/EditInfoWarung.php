@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION["id_user"])) {
-    header("Location: ../View/masuk.php");
+    header("Location:../View/masuk.php");
 }
 
 if (!isset($_GET['id'])){
@@ -172,7 +172,9 @@ if (isset($_POST['simpan_fotoWarung'])) {
                         </div>
                     </div>
 
-                    <button class="btn btn-info btn-lg">Edit Info</button>
+                    <a href="../View/EditWarung.php?id=<?php echo $id_warung;?>">
+                    <button class="btn btn-info btn-lg" >Edit Info</button>
+                    </a>
                     <hr>
                     <br>
 
@@ -232,7 +234,7 @@ if (isset($_POST['simpan_fotoWarung'])) {
                     <h4>Foto Menu</h4>
                     <button class="btn btn-primary">Tambah Foto Menu</button>
                     <div class="panel-body">
-                        <div class="table-responsive">
+                        <div class="table-responsive" style="max-height: 500px;">
                             <div id="dataTable_Wrapper" class="dataTables_wrapper form-inline">
                                 <div class="row">
                                     <div id="dataTable_length" class="dataTables_length">
