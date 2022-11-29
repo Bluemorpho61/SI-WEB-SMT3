@@ -23,7 +23,7 @@ if (isset($_POST['submit'])){
                 $_SESSION['email']=$emailVal;
                 $_SESSION['password']=$pasVal;
                 $_SESSION['hak']=$level;
-                header('Location: ../View/index.php');
+                header('Location: ../View/index.php?id='.$_SESSION['id_user']);
             } else if ($emailVal==$email &&$pasVal==$pass&&$level=='registered'){
                 $_SESSION['id']=$id;
                 $_SESSION['username']=$username;

@@ -2,9 +2,7 @@
 
 require_once("../Config/koneksi.php");
 
-if (isset($_SESSION['id'])){
-header('Location:../View/akun.php');
-}elseif (isset($_SESSION['id_user'])){
+if (isset($_SESSION['id_user'])){
 header('Location:../View/index.php');
 }
 // include database.php
