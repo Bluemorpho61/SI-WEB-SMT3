@@ -161,13 +161,13 @@ if (isset($_POST['simpan_fotoWarung'])) {
                         </div>
                     </div>
 
+
                     <div class="form-group">
                         <div class="col-xs-6">
                             <div>
                                 <p style="font-size: large; font-weight: bold">Deskripsi</p>
                                 <p style="font-size: medium">
                                     <?php echo $deskripsi; ?></p>
-
                             </div>
                         </div>
                     </div>
