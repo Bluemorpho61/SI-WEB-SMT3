@@ -1,29 +1,20 @@
 <?php
 
-
-
-require_once("../Config/koneksi.php");
+require_once("config/database.php");
 
 session_start();
 
 if(!isset($_SESSION["id"])){
-  header("Location: ../View/masuk.php");
+  header("Location: http://localhost/SI-WEB-SMT3/WarungKuy/masuk.php");
 }
 
 $id = $_SESSION["id"];
 
-$query ="SELECT * FROM tb_users WHERE id_user=$id";
-$result = mysqli_query($koneksi, $query);
-$row=mysqli_fetch_assoc($result);
-$username=$row['username'];
-$res_Email=$row['email'];
-
-
 if(isset($_POST["update"])){
 
-
-  $username = $_POST['username'];
-  $email = $_POST['email'];
+  $username = trim($_POST['username']);
+  $email = trim($_POST['email']);
+  $alamat = trim($_POST['alamat']);
 
   $nama_foto = $_POST["foto-lama"];
 
@@ -31,14 +22,14 @@ if(isset($_POST["update"])){
   if($_FILES["foto"]["error"] != 4){
     // // hapus file , jika default jangan dihapus
     if($nama_foto != "user-default.png"){
-      unlink("../Assets/img/".$nama_foto);
+      unlink("assets/img/".$nama_foto);
     }
     // upload file
-    move_uploaded_file($_FILES["foto"]["tmp_name"], "../Assets/img/".$_FILES["foto"]["name"]);
+    move_uploaded_file($_FILES["foto"]["tmp_name"], "assets/img/".$_FILES["foto"]["name"]);
     $nama_foto = $_FILES["foto"]["name"];
   }
 
-  $sql = "UPDATE tb_users set  username= '$username', email = '$email', foto = '$nama_foto' WHERE id_user ='$id'";
+  $sql = "UPDATE tb_users set username= '$username', email = '$email', foto = '$nama_foto', alamat = '$alamat' WHERE id_user ='$id'";
   $updated = mysqli_query($koneksi, $sql);
   if($updated){
     echo "<script>alert('Profile berhasil diperbarui!')</script>";
@@ -47,23 +38,11 @@ if(isset($_POST["update"])){
   }
 }
 
-
-
-
-//session_start();
-//include ('../Config/koneksi.php');
-//if(!isset($_SESSION["id"])){
-//  header("Location: ../View/masuk.php");
-//}
-//$id =$_GET['id'];
-//
-//$query="SELECT * FROM tb_users WHERE id_user=$id";
-//$result = mysqli_query($koneksi, $query);
-//$row = mysqli_fetch_assoc($result);
-//
-//echo print_r($username =$row['username']);
-//echo print_r($email=$row['email']);
-//$foto =$row['foto'];
+$sql = "SELECT * FROM tb_users WHERE id_user='$id'";
+$result = mysqli_query($koneksi, $sql);
+if ($result->num_rows){
+  $row = mysqli_fetch_assoc($result);
+}
 
 ?>
 <!DOCTYPE html>
@@ -78,7 +57,7 @@ if(isset($_POST["update"])){
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="../View/LandingPage/assets/img/i.png" rel="icon">
+  <link href="assets/img/i.png" rel="icon">
 
   <!-- Google Fonts -->
   <link
@@ -86,14 +65,14 @@ if(isset($_POST["update"])){
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="../View/LandingPage/assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="../View/LandingPage/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../View/LandingPage/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="../View/LandingPage/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="../View/LandingPage/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="../View/LandingPage/assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: SoftLand - v4.9.1
@@ -110,14 +89,14 @@ if(isset($_POST["update"])){
     <div class="container d-flex justify-content-between align-items-center">
 
       <div class="logo">
-        <h1><a href="Home.php">WarungKuy</a></h1>
+        <h1><a href="index.php">WarungKuy</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.php"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
   
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class=" " href="Home.php">Home</a></li>
+          <li><a class=" " href="index.php">Home</a></li>
           <li><a href="fitur.php">Fitur</a></li>
           <li><a class="active" href="akun.php">Akun Saya</a></li>
           <li><a href="masuk.php">Masuk</a></li>
@@ -153,7 +132,7 @@ if(isset($_POST["update"])){
             <div class="row justify-content-center">
               <div class="col-md-7 text-center hero-text">
                 <h1 data-aos="fade-up" data-aos-delay="">Selamat Datang</h1>
-                <p class="mb-5" data-aos="fade-up" data-aos-delay="100">Halo <?php echo $username;?></p>
+                <p class="mb-5" data-aos="fade-up" data-aos-delay="100">Halo, <?= $row["username"] ?></p>
               </div>
             </div>
           </div>
@@ -180,32 +159,35 @@ if(isset($_POST["update"])){
                 <div class="d-flex flex-row align-items-center">
                   <div class="col-3">
                     <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                      <img class="rounded-circle" id="foto-profile" width="150px" height="150px"
-                        src="../Assets/profile-img.png">
+                      <img class="rounded-circle" id="foto-profile" width="150px"
+                        src="http://localhost/SI-WEB-SMT3/WarungKuy/assets/img/<?= $row["foto"] ?>">
                     </div>
                   </div>
                   <div class="offset-2 col-7">
                     <label class="labels mb-2">Masukan Foto</label>
-                    <input type="text" name="foto-lama" class="d-none" value="<?= $row['foto']?>">
+                    <input type="text" name="foto-lama" class="d-none" value="<?= $row["foto"] ?>">
                     <input type="file" name="foto" class="form-control" placeholder="Email" value="" onchange="changeImage(this)">
                   </div>
                 </div>
-                <div class="row mt-2">
-
                 <div class="row mt-3">
                   <div class="col-md-12"><label class="labels mb-2">Username</label><input type="text"
-                      class="form-control" placeholder="Username" value= "<?php echo $username; ?>" name="username"></div>
+                      class="form-control" placeholder="Username" value= "<?= $row['username'] ?>" name="username"></div>
                 </div>
                 <div class="row mt-3">
                   <div class="col-md-12"><label class="labels mb-2">Email</label><input type="text" class="form-control"
-                      placeholder="Email" value="<?php echo $res_Email; ?>" name="email"></div>
+                      placeholder="Email" value= "<?= $row['email'] ?>" name="email" readonly></div>
                 </div>
+                <div class="row mt-3">
+                  <div class="col-md-12"><label class="labels mb-2">Alamat</label><input type="text" class="form-control"
+                      placeholder="Alamat" value= "<?= $row['alamat'] ?>" name="alamat"></div>
+                </div>
+
 
                 <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit" name="update">Save
                     Profile</button></div>
 
                 <div class="text-center mt-5">
-              <p>Mau keluar? <a href="../Controller/logout.php">Keluar</a></p>
+              <p>Mau keluar? <a href="keluar.php">Keluar</a></p>
             </div>
               </div>
             </div>
@@ -232,13 +214,13 @@ if(isset($_POST["update"])){
       class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="../View/LandingPage/assets/vendor/aos/aos.js"></script>
-  <script src="../View/LandingPage/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../View/LandingPage/assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="../View/LandingPage/assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="../View/LandingPage/assets/js/main.js"></script>
+  <script src="assets/js/main.js"></script>
 
   <script>
     function changeImage(file) {
