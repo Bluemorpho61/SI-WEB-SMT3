@@ -14,6 +14,7 @@ if(isset($_POST["update"])){
 
   $username = trim($_POST['username']);
   $email = trim($_POST['email']);
+  $alamat = trim($_POST['alamat']);
 
   $nama_foto = $_POST["foto-lama"];
 
@@ -28,7 +29,7 @@ if(isset($_POST["update"])){
     $nama_foto = $_FILES["foto"]["name"];
   }
 
-  $sql = "UPDATE tb_users set username= '$username', email = '$email', foto = '$nama_foto' WHERE id_user ='$id'";
+  $sql = "UPDATE tb_users set username= '$username', email = '$email', foto = '$nama_foto', alamat = '$alamat' WHERE id_user ='$id'";
   $updated = mysqli_query($koneksi, $sql);
   if($updated){
     echo "<script>alert('Profile berhasil diperbarui!')</script>";
@@ -176,6 +177,11 @@ if ($result->num_rows){
                   <div class="col-md-12"><label class="labels mb-2">Email</label><input type="text" class="form-control"
                       placeholder="Email" value= "<?= $row['email'] ?>" name="email" readonly></div>
                 </div>
+                <div class="row mt-3">
+                  <div class="col-md-12"><label class="labels mb-2">Alamat</label><input type="text" class="form-control"
+                      placeholder="Alamat" value= "<?= $row['alamat'] ?>" name="alamat"></div>
+                </div>
+
 
                 <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit" name="update">Save
                     Profile</button></div>

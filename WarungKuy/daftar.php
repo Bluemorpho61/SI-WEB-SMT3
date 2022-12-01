@@ -13,11 +13,12 @@ if(isset($_POST["submit"])){
   $username = trim($_POST["username"]);
   $email = trim($_POST["email"]);
   $password = trim($_POST["password"]);
+  $alamat = trim($_POST["alamat"]);
 
-  $sql = "INSERT INTO tb_users (username, email, password, hak) VALUES ('$username', '$email', '$password', 'registered')";
+  $sql = "INSERT INTO tb_users (username, email, password, hak, alamat) VALUES ('$username', '$email', '$password', 'registered', '$alamat')";
   $registrasi= mysqli_query($koneksi, $sql);
   if($registrasi){
-    sendMail($email, $nama);
+    sendMail($email, $username);
     echo "<script>alert('Berhasil Daftar! Silahkan cek email anda untuk melakukan Aktivasi akun!')</script>";
   }else{
     echo "<script>alert('Gagal Daftar!')</script>";
@@ -142,6 +143,12 @@ if(isset($_POST["submit"])){
                 <div class="form-outline mb-4">
                   <input type="password" id="loginPassword" class="form-control" name="password" />
                   <label class="form-label" for="loginPassword">Password</label>
+                </div>
+
+                <!-- Alamat input -->
+                <div class="form-outline mb-4">
+                  <input type="alamat" id="loginAlamat" class="form-control" name="alamat" />
+                  <label class="form-label" for="loginAlamat">Alamat</label>
                 </div>
 
                 <!-- Submit button -->
