@@ -7,20 +7,29 @@ if (!isset($_GET['id'])){
 if (isset($_POST['submit_image'])) {
     $deskripsi =$_POST['desc'];
     $id_warung = $_GET['id'];
+
+    try {
+        $query ="INSERT INTO tb_deskripsi VALUES(NULL, '$deskripsi', $id_warung)";
+        $result =mysqli_query($koneksi, $query);
+    } catch (Exception $e){
+        echo $e->getMessage();
+    }
+
+    $getlastID =mysqli_insert_id($koneksi);
     for ($i = 0; $i < count($_FILES["upload_file"]["name"]); $i++) {
         $uploadfile = $_FILES["upload_file"]["tmp_name"][$i];
+        $filename =$_FILES['upload_file']['name'][$i];
         $folder = "../Assets/img/fotomenu/";
         //Insert Deskripsi
-        $query ="INSERT INTO tb_deskripsi VALUES(NULL, '$deskripsi', $id_warung)";
-        try {
-            $result =mysqli_query($koneksi, $query);
+        $insertQuery ="INSERT INTO tb_fotomenu (foto_menu, id_deskrpsi, id_warung) VALUES ('$filename',$getlastID,$id_warung)";
+        $resultMoveImage =mysqli_query($koneksi, $insertQuery);
             move_uploaded_file($_FILES["upload_file"]["tmp_name"][$i], "$folder" . $_FILES["upload_file"]["name"][$i]);
-        } catch (Exception $e){
-            echo $e->getMessage();
-        }
+
+
 
     }
     exit();
+    header("Location:../View/KelolaWarung.php");
 }
 
 

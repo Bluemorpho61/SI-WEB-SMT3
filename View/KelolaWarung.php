@@ -3,7 +3,7 @@ session_start();
 include('../Config/koneksi.php');
 if (!isset($_SESSION['id_user'])){
     $_SESSION['msg']='Anda harus login terlebih dahulu';
-    header("Location:../View/Masuk.html");
+    header("Location:../View/Masuk.php");
 }
 //$query_nama ="SELECT nama_warung"
 ?>

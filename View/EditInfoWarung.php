@@ -263,7 +263,7 @@ if (isset($_POST['simpan_fotoWarung'])) {
                                                             <td><?php echo $dataMenu['id_fotomenu']; ?></td>
                                                             <td>
                                                                 <img style="width: 200px; height: 150px;"
-                                                                     src="../Assets/img/<?php echo $dataMenu['foto_menu']; ?>">
+                                                                     src="../Assets/img/fotomenu/<?php echo $dataMenu['foto_menu']; ?>">
                                                             </td>
                                                             <td>
                                                                 test
