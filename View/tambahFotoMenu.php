@@ -28,8 +28,8 @@ if (isset($_POST['submit_image'])) {
 
 
     }
-    exit();
     header("Location:../View/KelolaWarung.php");
+    exit();
 }
 
 
