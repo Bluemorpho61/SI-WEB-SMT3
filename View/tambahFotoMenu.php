@@ -1,56 +1,76 @@
-<!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>Tambah Foto Menu</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta charset="utf-8">
-<title>Angular file upload directive</title><link rel='stylesheet' href='../View/css/bootstrap.min.css'>
+<?php
+include ('../Config/koneksi.php');
+if (!isset($_GET['id'])){
+    header('Location:../View/KelolaWarung.php');
+}
 
+if (isset($_POST['submit_image'])) {
+    $deskripsi =$_POST['desc'];
+    $id_warung = $_GET['id'];
+    for ($i = 0; $i < count($_FILES["upload_file"]["name"]); $i++) {
+        $uploadfile = $_FILES["upload_file"]["tmp_name"][$i];
+        $folder = "../Assets/img/fotomenu/";
+        //Insert Deskripsi
+        $query ="INSERT INTO tb_deskripsi VALUES(NULL, '$deskripsi', $id_warung)";
+        try {
+            $result =mysqli_query($koneksi, $query);
+            move_uploaded_file($_FILES["upload_file"]["tmp_name"][$i], "$folder" . $_FILES["upload_file"]["name"][$i]);
+        } catch (Exception $e){
+            echo $e->getMessage();
+        }
+
+    }
+    exit();
+}
+
+
+?>
+
+<html>
+<head>
+    <script type="text/javascript" src="../View/js/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.js"></script>
+    <script>
+        $(document).ready(function()
+        {
+            $('form').ajaxForm(function()
+            {
+                alert("Uploaded SuccessFully");
+            });
+        });
+
+        function preview_image()
+        {
+            var total_file=document.getElementById("upload_file").files.length;
+            for(var i=0;i<total_file;i++)
+            {
+                $('#image_preview').append("<img style='height: 254px; width: 300px;' src='"+URL.createObjectURL(event.target.files[i])+"'><br>");
+            }
+        }
+    </script>
+    <title>Tambah foto menu</title>
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<div ng-app="app">
-  <div ng-controller="UploadController as vm">
-    <div class="container">
-      <div class="page-header">
-        <h1>Tambahkan foto menu baru</h1>
+<div id="wrapper">
+    <form action="" method="post" enctype="multipart/form-data">
+        <input type="file" id="upload_file" name="upload_file[]" onchange="preview_image();" multiple/>
 
-      </div>
+        <div class="row">
+            <label id="desc">Tulis deskripsi untuk foto tsb disini.. </label>
+            <div class="row">
+                <textarea id="desc" style="width: 400px; height: 150px; font-size: 16px;" name="desc">
 
-      <form ng-model="vm.file" my-file-upload>
-        <div class="form-group">
-          <label for="fileName">Silahkan pilih satu buah gambar untuk diunggah</label>
-          <div class="input-group">
-            <input type="text" id="fileName" class="form-control" readonly ng-model="fileName" ng-click="browse()">
-              <span class="input-group-btn">
-              <button type="button" class="btn btn-default" ng-click="browse()">Browse</button>
-            </span>
-          </div>
+                </textarea>
+
+            </div>
         </div>
-          <div>
-              <h5 style=" font-weight: bold">Masukkan Deskripsi</h5>
-              <textarea style="width: 400px; height: 100px; font-size: 14px" name="deskripsi-tulis" id="deskripsi-tulis"></textarea>
-          </div>
-          <div>
-              <h5>Atau Pilih salah satu deskripsi yang sudah ditambahkan sebelumnya</h5>
-              <label for="pil-deskripsi">Deskripsi yang sudah ada</label>
-              <select name="pil-deskripsi" id="pil-deskripsi">
-                <option>Value 1</option>
-                <option>Value 2</option>
-              </select>
-          </div>
 
-        <div>
-          <button type="reset" class="btn btn-default" ng-click="reset()">Reset</button>
-          <button type="button" class="btn btn-primary" ng-click="vm.upload()" ng-disabled="!vm.file">Upload</button>
-        </div>
-      </form>
-    </div>
-  </div>
+        <input type="submit" name='submit_image' value="Tambah gambar"/>
+        <button onclick="document.getElementById('upload_file').value=''; document.getElementById('desc').value='';">Reset</button>
+    </form>
+    <div id="image_preview"></div>
 </div>
-<!-- partial -->
-  <script src='//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js'></script><script  src="../View/js/script.js"></script>
-
 </body>
 </html>
+
+

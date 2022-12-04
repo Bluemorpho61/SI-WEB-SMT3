@@ -119,7 +119,7 @@ if (isset($_POST['submit'])) {
                         <div class="col-xs-6">
                             <label for="last_name"><h4>Alamat</h4></label>
                             <input type="text" class="form-control" name="alamat_warung" id="last_name"
-                                   placeholder="last name" title="enter your last name if any.">
+                                   placeholder="Alamat" title="Silahkan masukkan alamat warung">
                         </div>
                     </div>
 

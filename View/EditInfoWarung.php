@@ -232,7 +232,9 @@ if (isset($_POST['simpan_fotoWarung'])) {
 
                     <!--                    Foto Menu-->
                     <h4>Foto Menu</h4>
+                    <a href="../View/tambahFotoMenu.php?id=<?php echo $id_warung;?>">
                     <button class="btn btn-primary">Tambah Foto Menu</button>
+                    </a>
                     <div class="panel-body">
                         <div class="table-responsive" style="max-height: 500px;">
                             <div id="dataTable_Wrapper" class="dataTables_wrapper form-inline">

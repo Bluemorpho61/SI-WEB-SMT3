@@ -1,5 +1,5 @@
 <?php
-require_once "../config/database.php";
+require_once "../Config/koneksi.php";
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -9,7 +9,7 @@ if(function_exists($_GET['method'])) {
 
 function getAll(){
     global $koneksi;
-    $users = mysqli_query($koneksi, "SELECT * FROM tb_fotowarung");
+    $users = mysqli_query($koneksi, "SELECT * FROM tb_deskripsi");
     
     $users_data = [];
 
@@ -24,7 +24,7 @@ function getAll(){
 function getById(){
     global $koneksi;
     $id = $_GET["id"];
-    $user = mysqli_query($koneksi, "SELECT * FROM tb_fotowarung WHERE id_fotowarung = '$id'");
+    $user = mysqli_query($koneksi, "SELECT * FROM tb_deskripsi WHERE id_deskripsi = '$id'");
     if($user->num_rows){
         $row = mysqli_fetch_assoc($user);
         echo(json_encode($row));

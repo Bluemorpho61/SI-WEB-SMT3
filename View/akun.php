@@ -1,11 +1,11 @@
 <?php
 
-require_once("config/database.php");
+require_once("../Config/koneksi.php");
 
 session_start();
 
 if(!isset($_SESSION["id"])){
-  header("Location: http://localhost/SI-WEB-SMT3/WarungKuy/masuk.php");
+  header("Location: ../View/masuk.php");
 }
 
 $id = $_SESSION["id"];
@@ -15,17 +15,16 @@ if(isset($_POST["update"])){
   $username = trim($_POST['username']);
   $email = trim($_POST['email']);
   $alamat = trim($_POST['alamat']);
-
   $nama_foto = $_POST["foto-lama"];
 
   // upload foto
   if($_FILES["foto"]["error"] != 4){
     // // hapus file , jika default jangan dihapus
     if($nama_foto != "user-default.png"){
-      unlink("assets/img/".$nama_foto);
+      unlink("../View/LandingPage/assets/img/".$nama_foto);
     }
     // upload file
-    move_uploaded_file($_FILES["foto"]["tmp_name"], "assets/img/".$_FILES["foto"]["name"]);
+    move_uploaded_file($_FILES["foto"]["tmp_name"], "../View/LandingPage/assets/img/".$_FILES["foto"]["name"]);
     $nama_foto = $_FILES["foto"]["name"];
   }
 
@@ -57,7 +56,7 @@ if ($result->num_rows){
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/i.png" rel="icon">
+  <link href="../View/LandingPage/assets/img/i.png" rel="icon">
 
   <!-- Google Fonts -->
   <link
@@ -65,14 +64,14 @@ if ($result->num_rows){
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../View/LandingPage/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../View/LandingPage/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../View/LandingPage/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../View/LandingPage/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../View/LandingPage/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="../View/LandingPage/assets/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: SoftLand - v4.9.1
@@ -187,7 +186,7 @@ if ($result->num_rows){
                     Profile</button></div>
 
                 <div class="text-center mt-5">
-              <p>Mau keluar? <a href="keluar.php">Keluar</a></p>
+              <p>Mau keluar? <a href="../Controller/logout.php">Keluar</a></p>
             </div>
               </div>
             </div>
@@ -214,13 +213,13 @@ if ($result->num_rows){
       class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="../View/LandingPage/assets/vendor/aos/aos.js"></script>
+  <script src="../View/LandingPage/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../View/LandingPage/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../View/LandingPage/assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="../View/LandingPage/assets/js/main.js"></script>
 
   <script>
     function changeImage(file) {
