@@ -101,7 +101,7 @@ if (isset($_POST['simpan_fotoWarung'])) {
 
             <ul class="list-group">
                 <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong>Komentar</strong></span>
+                <li class="list-group-item text-right"><span class="pull-left"><strong><a href="../View/KomentarWarung.php?id=<?php echo $id_warung;?>">Komentar</a></strong></span>
                     125
                 </li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong><a href="EditInfoWarung.php">Favorit</a></strong></span>
@@ -289,7 +289,7 @@ if (isset($_POST['simpan_fotoWarung'])) {
         </div>
     </div><!--/col-9-->
 </div><!--/row-->
-</div>
+
 
 
 
