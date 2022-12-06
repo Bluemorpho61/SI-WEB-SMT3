@@ -107,7 +107,7 @@ if (isset($_POST['simpan_fotoWarung'])) {
                 <li class="list-group-item text-right"><span class="pull-left"><strong><a href="../View/KomentarWarung.php?id=<?php echo $id_warung;?>">Komentar</a></strong></span>
                     <?php echo $hslCountCmnt;?>
                 </li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong><a href="EditInfoWarung.php">Favorit</a></strong></span>
+                <li class="list-group-item text-right"><span class="pull-left"><strong><a href="../View/WarungFavorit.php?fav=<?php echo $id_warung;?>">Favorit</a></strong></span>
                     13
                 </li>
                 <li class="list-group-item text-right"><span
@@ -216,7 +216,7 @@ if (isset($_POST['simpan_fotoWarung'])) {
                                                             <td>
                                                                 <img style="width: 410px; height: 200px;"
                                                                      src="../Assets/img/<?php echo $data['foto_warung']; ?>">
-                                                                <a href="../Controller/delete_fotowarung.php?foto=<?php echo $data['id_fotowarung'];?>"><button class="btn btn-danger" name="hapus_gambar_warung">Hapus Gambar</button></a>
+                                                                <a href="../Controller/delete_fotowarung.php?foto=<?php echo $data['id_fotowarung'];?>&id=<?php echo $id_warung?>"><button class="btn btn-danger" name="hapus_gambar_warung">Hapus Gambar</button></a>
                                                             </td>
                                                         </tr>
                                                         <?php

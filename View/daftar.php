@@ -113,7 +113,7 @@ if(isset($_SESSION['$id'])){
 
                 <!-- user input -->
                 <div class="form-outline mb-4 ">
-                  <input type="user" id="loginName" class="form-control" name="username"/>
+                  <input type="text" id="loginName" class="form-control" name="username"/>
                   <label class="form-label" for="loginName">Username</label>
                 </div>
 
@@ -133,7 +133,7 @@ if(isset($_SESSION['$id'])){
                 <button type="submit" name="submit" class="btn btn-primary btn-block mb-4">Daftar</button>
                 <!-- Login buttons -->
                 <div class="text-center">
-                  <p>Sudah Punya Akun? <a href="Masuk.php">Masuk</a></p>
+                  <p>Sudah Punya Akun? <a href="../View/masuk.php">Masuk</a></p>
                 </div>
                 
               </form>

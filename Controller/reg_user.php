@@ -7,8 +7,12 @@ if (isset($_POST['submit'])) {
     $password = $_POST['password'];
     $hak = 'registered';
     $query = "INSERT INTO tb_users VALUES ('','$username','$email','$password','registered','','')";
-    mysqli_query($koneksi,$query);
-    header("Location:../View/masuk.php");
+    $result=mysqli_query($koneksi,$query);
+    if ($result){
+        echo "<script>alert('Registrasi Berhasil! Silahkan login dengan akun yang telah anda daftarkan')</script>";
+        header("Location:../View/Masuk.php");
+    }
+
 }else{
     ?><script>
         alert("Proses Registrasi Gagal");
