@@ -16,8 +16,6 @@ $id_warung = $_GET['id'];
 $query = "SELECT * FROM tb_warung WHERE id_warung=$id_warung";
 //Query SELECT Username Kontributor info warung
 $query_getNama = "SELECT tb_warung.id_warung, tb_users.username FROM tb_warung, tb_users WHERE tb_warung.id_user = tb_users.id_user AND tb_warung.id_warung =$id_warung";
-
-
 $resultNama = mysqli_query($koneksi, $query_getNama);
 $rowNama = mysqli_fetch_assoc($resultNama);
 
@@ -32,6 +30,11 @@ $gambar = $row['foto'];
 $kontributor = $rowNama['username'];
 $deskripsi = $row['deskripsi'];
 
+
+//Count jumlah komentar
+$qry_htg_komentar = "SELECT COUNT(tb_log_comment_user.komentar) AS jumlah FROM tb_log_comment_user WHERE tb_log_comment_user.id_warung= $id_warung";
+$resultCountCmnt =mysqli_query($koneksi, $qry_htg_komentar);
+$hslCountCmnt =$resultCountCmnt->fetch_assoc()['jumlah'];
 
 if (isset($_POST['simpan_fotoWarung'])) {
     $nama_foto = $_FILES['foto']['name'];
@@ -102,7 +105,7 @@ if (isset($_POST['simpan_fotoWarung'])) {
             <ul class="list-group">
                 <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong><a href="../View/KomentarWarung.php?id=<?php echo $id_warung;?>">Komentar</a></strong></span>
-                    125
+                    <?php echo $hslCountCmnt;?>
                 </li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong><a href="EditInfoWarung.php">Favorit</a></strong></span>
                     13
@@ -248,14 +251,17 @@ if (isset($_POST['simpan_fotoWarung'])) {
                                                     <thead>
                                                     <tr role="row">
                                                         <th>ID</th>
-                                                        <th>Foto Menu</th>
+                                                        <th style="width: 16px">Foto Menu</th>
                                                         <th>Deskripsi</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
                                                     <?php
-                                                    $queryGetFotoMenu = "SELECT * FROM tb_fotomenu WHERE id_warung=$id_warung";
+                                                    $queryGetFotoMenu = "SELECT tb_warung.nama_warung, tb_fotomenu.id_fotomenu,tb_fotomenu.foto_menu , tb_deskripsi.deskripsi 
+                                                    FROM tb_fotomenu JOIN tb_deskripsi ON tb_fotomenu.id_deskrpsi = tb_deskripsi.id_deskrpsi 
+                                                    JOIN tb_warung 
+                                                    ON tb_warung.id_warung = tb_deskripsi.id_warung WHERE tb_warung.id_warung =$id_warung";
                                                     $resultFotoMenu = mysqli_query($koneksi, $queryGetFotoMenu);
                                                     while ($dataMenu = mysqli_fetch_array($resultFotoMenu, MYSQLI_ASSOC)) {
                                                         ?>
@@ -266,10 +272,11 @@ if (isset($_POST['simpan_fotoWarung'])) {
                                                                      src="../Assets/img/fotomenu/<?php echo $dataMenu['foto_menu']; ?>">
                                                             </td>
                                                             <td>
-                                                                test
+                                                                <?php echo $dataMenu['deskripsi'] ?>
                                                             </td>
                                                             <td>
-                                                                <button class="btn btn-danger">Hapus</button>
+                                                                <a href="../Controller/deleteFotoMenu.php?menu=<?php echo $dataMenu['id_fotomenu'];?>&id=<?php echo $id_warung?>"><button class="btn btn-danger">Hapus</button></a>
+
                                                             </td>
                                                         </tr>
                                                         <?php

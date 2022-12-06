@@ -5,7 +5,7 @@ if (!isset($_SESSION["id_user"])) {
     header("Location:../View/masuk.php");
 }
 
-if (!isset($_GET['id'])){
+if (!isset($_GET['id'])) {
     header("Location:../View/KelolaWarung.php");
 }
 
@@ -15,10 +15,8 @@ $id_warung = $_GET['id'];
 //Query SELECT ALL
 $query = "SELECT * FROM tb_warung WHERE id_warung=$id_warung";
 //Query SELECT Username Kontributor info warung
-$result =mysqli_query($koneksi,$query);
+$result = mysqli_query($koneksi, $query);
 $row = mysqli_fetch_assoc($result);
-
-
 
 
 ?>
@@ -33,7 +31,7 @@ $row = mysqli_fetch_assoc($result);
 <!------ Include the above in your HEAD tag ---------->
 
 <head>
-    <title>Lihat Komentar - <?php echo $row['nama_warung']?></title>
+    <title>Lihat Komentar - <?php echo $row['nama_warung'] ?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../View/css/bootstrap.min.css">
@@ -68,7 +66,8 @@ $row = mysqli_fetch_assoc($result);
 
             <ul class="list-group">
                 <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-                <li class="list-group-item text-right"> <span class="pull-left"><strong><a href="../View/KomentarWarung.php?id=<?php echo $id_warung;?>">Komentar</a></strong></span>
+                <li class="list-group-item text-right"><span class="pull-left"><strong><a
+                                    href="../View/KomentarWarung.php?id=<?php echo $id_warung; ?>">Komentar</a></strong></span>
                     125
                 </li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong><a href="EditInfoWarung.php">Favorit</a></strong></span>
@@ -84,7 +83,8 @@ $row = mysqli_fetch_assoc($result);
         </div><!--/col-3-->
         <div class="col-sm-9">
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">Lihat Komentar - <?php echo $row['nama_warung']?></a></li>
+                <li class="active"><a data-toggle="tab" href="#home">Lihat Komentar
+                        - <?php echo $row['nama_warung'] ?></a></li>
 
 
             </ul>
@@ -111,18 +111,23 @@ $row = mysqli_fetch_assoc($result);
                                                     </tr>
                                                     </thead>
                                                     <tbody>
+
                                                     <?php
-                                                    $queryGetFotoWarung = "SELECT * FROM tb_fotowarung WHERE id_warung=$id_warung";
-                                                    $resultFotoWarung = mysqli_query($koneksi, $queryGetFotoWarung);
-                                                    while ($data = mysqli_fetch_array($resultFotoWarung, MYSQLI_ASSOC)) {
+                                                    $queryGetKomentar = "SELECT tb_users.username, tb_warung.id_warung ,
+                                                    tb_log_comment_user.komentar, tb_log_comment_user.waktu FROM tb_users 
+                                                    JOIN tb_log_comment_user ON tb_users.id_user = tb_log_comment_user.id_user 
+                                                    JOIN tb_warung ON tb_warung.id_warung =tb_log_comment_user.id_warung 
+                                                    WHERE tb_warung.id_warung=$id_warung";
+
+                                                    $resultKomentarUser = mysqli_query($koneksi, $queryGetKomentar);
+                                                    while ($data = mysqli_fetch_array($resultKomentarUser, MYSQLI_ASSOC)) {
                                                         ?>
                                                         <tr>
-                                                            <td><?php echo $data['id_fotowarung']; ?></td>
+                                                            <td><?php echo $data['username']; ?></td>
                                                             <td>
-                                                                <img style="width: 410px; height: 200px;"
-                                                                     src="../Assets/img/<?php echo $data['foto_warung']; ?>">
-                                                                <a href="../Controller/delete_fotowarung.php?foto=<?php echo $data['id_fotowarung'];?>"><button class="btn btn-danger" name="hapus_gambar_warung">Hapus Gambar</button></a>
+                                                                <?php echo $data['komentar']; ?>
                                                             </td>
+                                                            <td><?php echo $data['waktu']; ?></td>
                                                         </tr>
                                                         <?php
                                                     }

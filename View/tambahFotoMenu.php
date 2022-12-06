@@ -25,10 +25,10 @@ if (isset($_POST['submit_image'])) {
         $resultMoveImage =mysqli_query($koneksi, $insertQuery);
             move_uploaded_file($_FILES["upload_file"]["tmp_name"][$i], "$folder" . $_FILES["upload_file"]["name"][$i]);
 
-
+        header("Location:../View/KelolaWarung.php");
 
     }
-    header("Location:../View/KelolaWarung.php");
+
     exit();
 }
 
