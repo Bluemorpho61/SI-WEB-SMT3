@@ -4,10 +4,6 @@ require_once("../Config/koneksi.php");
 
 session_start();
 
-if(!isset($_SESSION["id"])){
-  header("Location: ../View/masuk.php");
-}
-
 $id = $_SESSION["id"];
 
 if(isset($_POST["update"])){

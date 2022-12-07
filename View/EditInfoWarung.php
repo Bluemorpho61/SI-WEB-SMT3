@@ -36,26 +36,16 @@ $qry_htg_komentar = "SELECT COUNT(tb_log_comment_user.komentar) AS jumlah FROM t
 $resultCountCmnt =mysqli_query($koneksi, $qry_htg_komentar);
 $hslCountCmnt =$resultCountCmnt->fetch_assoc()['jumlah'];
 
-if (isset($_POST['simpan_fotoWarung'])) {
-    $nama_foto = $_FILES['foto']['name'];
-    $temp_name = $_FILES['foto']['tmp_name'];
-    $folder = "../Assets/img/" . $nama_foto;
-    $query = "INSERT INTO tb_fotowarung VALUES (NULL,'$nama_foto',$id_warung)";
-    mysqli_query($koneksi, $query);
-    if (move_uploaded_file($temp_name, $folder)) {
-        ?>
-        <script>
-            alert("Tambah foto warung berhasil!")
-        </script><?php
-        header("Location:../View/EditInfoWarung.php?id=$id_warung");
-    } else {
-        ?>
-        <script>
-            alert("Tambah foto warung gagal");
-        </script><?php
-    }
-}
+//Count banyak favorit
+$qry_htg_favorit ="SELECT COUNT(tb_favorit.id_favorit) AS jumlah FROM tb_favorit WHERE id_warung = $id_warung";
+$resultCountFvrt =mysqli_query($koneksi, $qry_htg_favorit);
+$hslCountFvrt =$resultCountFvrt->fetch_assoc()['jumlah'];
 
+//Count banyak yg memberi rating
+$qry_htg_rating="SELECT COUNT(tb_rating.rating) AS jumlah FROM tb_rating
+WHERE tb_rating.id_warung =$id_warung";
+$resultCountRating = mysqli_query($koneksi, $qry_htg_rating);
+$hslCountRating = $resultCountRating->fetch_assoc()['jumlah'];
 
 ?>
 <link href="../View/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -108,11 +98,11 @@ if (isset($_POST['simpan_fotoWarung'])) {
                     <?php echo $hslCountCmnt;?>
                 </li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong><a href="../View/WarungFavorit.php?fav=<?php echo $id_warung;?>">Favorit</a></strong></span>
-                    13
+                    <?php echo $hslCountFvrt;?>
                 </li>
                 <li class="list-group-item text-right"><span
                             class="pull-left"><strong><a
-                                    href="EditInfoWarung.php">Banyak Rating Yang Diberikan</a></strong></span> 78
+                                    href="../View/RatingWarung.php?rate=<?php echo $id_warung;?>">Banyak Rating Yang Diberikan</a></strong></span> <?php echo $hslCountRating;?>
                 </li>
             </ul>
 

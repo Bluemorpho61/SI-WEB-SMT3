@@ -5,9 +5,12 @@ if (!isset($_SESSION["id_user"])) {
     header("Location:../View/masuk.php");
 }
 
+if (!isset($_GET['rate'])){
+    header("Location:../View/KelolaWarung.php");
+}
 
 include('../Config/koneksi.php');
-$id_warung = $_GET['fav'];
+$id_warung = $_GET['rate'];
 
 //Query SELECT ALL
 $query = "SELECT * FROM tb_warung WHERE id_warung=$id_warung";
@@ -37,13 +40,6 @@ $hslCountCmnt = $resultCountCmnt->fetch_assoc()['jumlah'];
 $qry_htg_favorit ="SELECT COUNT(tb_favorit.id_favorit) AS jumlah FROM tb_favorit WHERE id_warung = $id_warung";
 $resultCountFvrt =mysqli_query($koneksi, $qry_htg_favorit);
 $hslCountFvrt =$resultCountFvrt->fetch_assoc()['jumlah'];
-
-//Count banyak yg memberi rating
-$qry_htg_rating="SELECT COUNT(tb_rating.rating) AS jumlah FROM tb_rating
-WHERE tb_rating.id_warung =$id_warung";
-$resultCountRating = mysqli_query($koneksi, $qry_htg_rating);
-$hslCountRating = $resultCountRating->fetch_assoc()['jumlah'];
-
 
 ?>
 <link href="../View/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -93,17 +89,16 @@ $hslCountRating = $resultCountRating->fetch_assoc()['jumlah'];
             <ul class="list-group">
                 <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong><a
-                                    href="../View/KomentarWarung.php?id=<?php echo $id_warung; ?>">Komentar</a></strong></span>
+                                href="../View/KomentarWarung.php?id=<?php echo $id_warung; ?>">Komentar</a></strong></span>
                     <?php echo $hslCountCmnt; ?>
                 </li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong><a
-                                    href="../View/WarungFavorit.php?fav=<?php echo $id_warung;?>">Favorit</a></strong></span>
-                    <?php echo $hslCountFvrt;?>
+                                href="../View/WarungFavorit.php">Favorit</a></strong></span>
+                    <?php echo $hslCountFvrt; ?>
                 </li>
                 <li class="list-group-item text-right"><span
-                            class="pull-left"><strong><a
-                                    href="../View/RatingWarung.php">Banyak Rating Yang Diberikan</a></strong></span>
-                    <?php echo $hslCountRating?>
+                        class="pull-left"><strong><a
+                                href="EditInfoWarung.php">Banyak Rating Yang Diberikan</a></strong></span> 78
                 </li>
             </ul>
 
@@ -133,21 +128,25 @@ $hslCountRating = $resultCountRating->fetch_assoc()['jumlah'];
                                                        role="grid">
                                                     <thead>
                                                     <tr role="row">
-                                                        <th>ID Favorit</th>
-                                                        <th>Pengguna yang menyukai ini</th>
+                                                        <th>Nama Pengguna</th>
+                                                        <th>Rating</th>
+                                                        <th>Waktu</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
                                                     <?php
-                                                    $queryGetFavorit = "SELECT tb_favorit.id_favorit, tb_users.username, tb_warung.id_warung 
-                                                    FROM tb_users JOIN tb_favorit ON tb_users.id_user = tb_favorit.id_user 
-                                                    JOIN tb_warung ON tb_warung.id_warung = tb_favorit.id_warung WHERE tb_warung.id_warung =$id_warung";
-                                                    $resultFavorit = mysqli_query($koneksi, $queryGetFavorit);
+                                                    $queryGetRating = "SELECT tb_warung.id_warung,tb_users.username, 
+                                                    tb_rating.rating, tb_rating.waktu 
+                                                    FROM tb_users JOIN tb_rating ON tb_users.id_user = tb_rating.id_user 
+                                                    JOIN tb_warung ON tb_warung.id_warung = tb_rating.id_warung 
+                                                    WHERE tb_warung.id_warung = $id_warung";
+                                                    $resultFavorit = mysqli_query($koneksi, $queryGetRating);
                                                     while ($data = mysqli_fetch_array($resultFavorit, MYSQLI_ASSOC)) {
                                                         ?>
                                                         <tr>
-                                                            <td><?php echo $data['id_favorit']; ?></td>
-                                                            <td><?php echo $data['username'];?></td>
+                                                            <td><?php echo $data['username']; ?></td>
+                                                            <td><?php echo $data['rating'];?>/5</td>
+                                                            <td><?php echo $data['waktu'];?></td>
                                                         </tr>
                                                         <?php
                                                     }
@@ -166,7 +165,3 @@ $hslCountRating = $resultCountRating->fetch_assoc()['jumlah'];
         </div>
     </div><!--/col-9-->
 </div><!--/row-->
-
-
-
-

@@ -1,10 +1,14 @@
 <?php
-
+session_start();
 require_once("../Config/koneksi.php");
 
 if (isset($_SESSION['id_user'])){
 header('Location:../View/index.php');
 }
+if (isset($_SESSION['id'])){
+    header('Location:../View/akun.php');
+}
+
 // include database.php
 
 //session_start();
