@@ -15,19 +15,27 @@ if (isset($_POST['submit'])) {
     $namaWarung = $_POST['nama_warung'];
     $alamatWarung = $_POST['alamat_warung'];
     $deskripsi = $_POST['deskripsi'];
-    $filename =$_FILES['foto']['name'];
-    $temp_name =$_FILES['foto']['tmp_name'];
-    $folder ="../Assets/img/".$filename;
+    $filename = $_FILES['foto']['name'];
+    $temp_name = $_FILES['foto']['tmp_name'];
+    $folder = "../Assets/img/" . $filename;
 
 
-    $query ="INSERT INTO tb_warung VALUES (NULL,'$namaWarung','$alamatWarung','$deskripsi','$filename','$sesID','$tgl')";
-    mysqli_query($koneksi, $query);
+    $query = "INSERT INTO tb_warung VALUES (NULL,'$namaWarung','$alamatWarung','$deskripsi','$filename','$sesID','$tgl')";
+    $result =mysqli_query($koneksi, $query);
+    if ($result){
+        echo "<script>alert('Tambah data berhasil!')</script>";
+    }
+    if (isset($temp_name)){
+        move_uploaded_file($temp_name,$folder);
+    }
 
-        if(move_uploaded_file($temp_name,$folder)){
-            ?><script>alert("Upload data berhasil")</script><?php
-        }else{
-            ?><script>alert("Upload data gagal")</script><?php
-        }
+//    if (move_uploaded_file($temp_name, $folder)) {
+//        ?>
+<!--        <script>alert("Upload data berhasil")</script>--><?php
+//    } else {
+//        ?>
+<!--        <script>alert("Upload data gagal")</script>--><?php
+//    }
 
 //    $query = "INSERT into tb_warung (id_warung, nama_warung, alamat, foto, id_user, tanggal_ditambahkan) VALUES
 //            ('','$namaWarung','$alamatWarung','$fotoData','$sesID',now()";
@@ -68,89 +76,102 @@ if (isset($_POST['submit'])) {
     <form class="form" action="" enctype="multipart/form-data" method="post"
           id="registrationForm">
 
-    <div class="row">
-        <div class="col-sm-3"><!--left col-->
+        <div class="row">
+            <div class="col-sm-3"><!--left col-->
 
 
-            <div class="text-center">
-                <script type="text/javascript">
-                    function readUrl(input) {
-                        if (input.files && input.files[0]) {
-                            var reader = new FileReader();
-                            reader.onload = function (e) {
-                                $('#coy').attr('src', e.target.result);
+                <div class="text-center">
+                    <script type="text/javascript">
+                        function readUrl(input) {
+                            if (input.files && input.files[0]) {
+                                var reader = new FileReader();
+                                reader.onload = function (e) {
+                                    $('#coy').attr('src', e.target.result);
+                                }
+                                reader.readAsDataURL(input.files[0])
                             }
-                            reader.readAsDataURL(input.files[0])
                         }
-                    }
-                </script>
-                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"
-                     id="coy" alt="avatar">
-                <h6>Silahkan pilih foto profil utama warung</h6>
+                    </script>
+                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"
+                         id="coy" alt="avatar">
+                    <h6>Silahkan pilih foto profil utama warung</h6>
 
 
                     <input type="file" name="foto" class="text-center center-block file-upload"
                            onchange="readUrl(this)">
 
-            </div>
-            <br>
+                </div>
+                <br>
 
 
-        </div><!--/col-3-->
-        <div class="col-sm-9">
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-            </ul>
+            </div><!--/col-3-->
+            <div class="col-sm-9">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+                </ul>
 
-            <div class="tab-content">
-                <div class="tab-pane active" id="home">
-                    <hr>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home">
+                        <hr>
 
-                    <div class="form">
+                        <div class="form">
 
-                        <div class="col-xs-6">
-                            <label for="first_name"><h4>Nama Warung</h4></label>
-                            <input type="text" class="form-control" name="nama_warung" id="first_name"
-                                   placeholder="Nama Warung" title="enter your first name if any.">
+                            <div class="col-xs-6">
+                                <label for="first_name"><h4>Nama Warung</h4></label>
+                                <input type="text" class="form-control" name="nama_warung" id="formData"
+                                       placeholder="Nama Warung" title="enter your first name if any.">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form">
+                        <div class="form">
 
-                        <div class="col-xs-6">
-                            <label for="last_name"><h4>Alamat</h4></label>
-                            <input type="text" class="form-control" name="alamat_warung" id="last_name"
-                                   placeholder="Alamat" title="Silahkan masukkan alamat warung">
+                            <div class="col-xs-6">
+                                <label for="last_name"><h4>Alamat</h4></label>
+                                <input type="text" class="form-control" name="alamat_warung" id="formData"
+                                       placeholder="Alamat" title="Silahkan masukkan alamat warung">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form">
+                        <div class="form">
 
-                        <div class="col-xs-6">
-                            <label for="phone"><h4>Deskripsi</h4></label>
-                            <textarea class="form-control" id="phone" name="deskripsi"></textarea>
+                            <div class="col-xs-6">
+                                <label for="phone"><h4>Deskripsi</h4></label>
+                                <textarea class="form-control" id="formData" name="deskripsi"></textarea>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form">
-                        <div class="col-xs-12">
-                            <br>
-                            <button class="btn btn-lg btn-success" type="submit" name="submit"><i
-                                        class="glyphicon glyphicon-ok-sign"></i> Save
-                            </button>
+                        <div class="form">
+                            <div class="col-xs-12">
+                                <br>
+                                <button class="btn btn-lg btn-success" type="submit" name="submit"><i
+                                            class="glyphicon glyphicon-ok-sign"></i> Save
+                                </button>
 
-                            <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset
-                            </button>
+                                <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset
+                                </button>
+                            </div>
                         </div>
-                    </div>
 
 
-                    <hr>
+                        <hr>
+
+                    </div><!--/tab-pane-->
+
 
                 </div><!--/tab-pane-->
-
-
-            </div><!--/tab-pane-->
-        </div><!--/tab-content-->
+            </div><!--/tab-content-->
     </form>
-    </div><!--/col-9-->
-</div><!--/row-->
+</div><!--/col-9-->
+<!--/row-->
+
+<script type="text/javascript">
+    var check =document.querySelector('#registrationForm');
+    var inputData =document.querySelector('#formData');
+
+    check.addEventListener('submit', function (pEvent){
+    if (inputData.value===''){
+        pEvent.preventDefault();
+        alert("Pastikan semua field terisi!");
+    }
+    })
+
+</script>

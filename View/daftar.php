@@ -1,7 +1,6 @@
 <?php
 
 require_once("../Config/koneksi.php");
-
 session_start();
 
 if(isset($_SESSION['$id'])){
@@ -109,7 +108,7 @@ if(isset($_SESSION['$id'])){
       <div class="container">
         <div class="row mt-5 align-items-end d-flex justify-content-center">
           <div class="col-6" data-aos="fade-up">
-              <form action="../Controller/reg_user.php" method="post">
+              <form action="../Controller/reg_user.php" method="post" id="values">
 
                 <!-- user input -->
                 <div class="form-outline mb-4 ">
@@ -160,6 +159,19 @@ if(isset($_SESSION['$id'])){
       class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
+  <script type="text/javascript">
+    var check =document.querySelector('#values');
+    var textfield1=document.querySelector('#loginName');
+    var textfield2=document.querySelector('#loginPassword');
+
+    check.addEventListener('submit', function (pEvent) {
+        if (textfield1.value===''||textfield2.value===''){
+            pEvent.preventDefault();
+            alert("Pastikan semua field terisi!");
+        }
+    });
+  </script>
+
   <script src="../View/LandingPage/assets/vendor/aos/aos.js"></script>
   <script src="../View/LandingPage/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../View/LandingPage/assets/vendor/swiper/swiper-bundle.min.js"></script>

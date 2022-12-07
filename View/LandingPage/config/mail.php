@@ -1,12 +1,12 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require "vendor/autoload.php";
+require ('../vendor/autoload.php');
 
 function sendMail($email, $nama)
 {
     $bodyMail ='<!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -272,6 +272,7 @@ function sendMail($email, $nama)
                           "
                           width="100%"
                         >
+                   
                           <tbody>
                             <tr>
                               <td
@@ -312,7 +313,7 @@ function sendMail($email, $nama)
                                         bgcolor="#3498db"
                                       >
                                         <a
-                                          href="http://localhost/SI-WEB-SMT3/Warungkuy/verifikasi.php?email='.$email.'"
+                                          href="../verifikasi.php?email='.$email.'"
                                           target="_blank"
                                           style="
                                             border: solid 1px #3498db;
@@ -438,7 +439,7 @@ function sendMail($email, $nama)
                   >
                     Powered by
                     <a
-                      href="http://localhost/SI-WEB-SMT3/Warungkuy/"
+                      href="../../../View/"
                       style="
                         color: #999999;
                         font-size: 12px;

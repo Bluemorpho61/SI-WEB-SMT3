@@ -1,6 +1,6 @@
 <?php
 
-require_once("config/database.php");
+require_once("../../Config/koneksi.php");
 
 if($_GET["email"]){
     $email = $_GET["email"];
@@ -14,5 +14,5 @@ if($_GET["email"]){
         echo "<script>alert('Akun anda gagal berivikasi!')</script>";
     }
 
-    header("Location: http://localhost/SI-WEB-SMT3/Warungkuy/Masuk.php");
+    header("View/masuk.php");
 }

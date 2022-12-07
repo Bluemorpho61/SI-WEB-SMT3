@@ -9,15 +9,11 @@ if (isset($_POST['submit'])) {
     $query = "INSERT INTO tb_users VALUES ('','$username','$email','$password','registered','','')";
     $result=mysqli_query($koneksi,$query);
     if ($result){
-        echo "<script>alert('Registrasi Berhasil! Silahkan login dengan akun yang telah anda daftarkan')</script>";
-        header("Location:../View/Masuk.php");
+       echo "<script type='text/javascript'>alert('Proses Registrasi Berhasil!');  window.location='../View/masuk.php'</script>";
     }
 
 }else{
-    ?><script>
-        alert("Proses Registrasi Gagal");
-        header("Location:../View/daftar.php");
-    </script><?php
+    echo "<script type='text/javascript'>alert('Proses Registrasi Gagal!'); window.location='../View/daftar.php'</script>";
 }
 //    if ($result =!mysqli_query($koneksi, $query)) {
 //        echo "Input data gagal";

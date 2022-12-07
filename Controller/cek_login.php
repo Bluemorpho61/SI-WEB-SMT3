@@ -14,7 +14,7 @@ if (isset($_POST['submit'])){
             $username=$row['username'];
             $emailVal=$row['email'];
             $pasVal=$row['password'];
-             $level=$row['hak'];
+            $level=$row['hak'];
         }
         if ($num !=0){
             if ($emailVal==$email &&$pasVal==$pass&&$level=='admin'){
@@ -33,12 +33,11 @@ if (isset($_POST['submit'])){
                 header('Location: ../View/akun.php?id='.$_SESSION['id']);
             }
             else{
-                $error='user atau password salah!!';
-                header('Location: ../View/masuk.php');
+//                $error='user atau password salah!!';
+                echo "<script>alert('Email/Password Salah'); window.location='../View/masuk.php'</script>";
             }
         }else{
-            $error='user tidak ditemukan';
-            echo $error;
+            echo "<script>alert('User tidak ditemukan, silahkan mendaftar terlebih dahulu'); window.location='../View/daftar.php'</script>";
         }
     }
 

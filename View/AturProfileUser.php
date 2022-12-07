@@ -7,47 +7,49 @@ if (!isset($_SESSION['id_user'])) {
     header("Location:../View/Masuk.php");
 }
 
-$getID=$_GET['id'];
+$getID = $_GET['id'];
 print_r($getID);
 
 
-$sql ="SELECT * FROM tb_users WHERE id_user=$getID";
+$sql = "SELECT * FROM tb_users WHERE id_user=$getID";
 $result = mysqli_query($koneksi, $sql);
-$row =mysqli_fetch_assoc($result);
+$row = mysqli_fetch_assoc($result);
 
-?><script>
+?>
+<script>
 
 </script><?php
 if (isset($_POST['submit'])) {
     //$tgl = date('Y-m-d H:i:s');
-    $input_username =$_POST['username'];
-    if ($input_username==""){
-        $input_username=$_POST['username-old'];
+    $input_username = $_POST['username'];
+    if ($input_username == "") {
+        $input_username = $_POST['username-old'];
     }
-    $input_email =$_POST['email'];
-    if ($input_email==""){
-        $input_email=$_POST['email-old'];
+    $input_email = $_POST['email'];
+    if ($input_email == "") {
+        $input_email = $_POST['email-old'];
     }
-    $input_password=$_POST['password'];
-    if ($input_password==""){
-        $input_password=$_POST['password-old'];
+    $input_password = $_POST['password'];
+    if ($input_password == "") {
+        $input_password = $_POST['password-old'];
     }
-    $input_alamat=$_POST['alamat'];
-    if ($input_alamat==""){
-        $input_password=$_POST['alamat-old'];
+    $input_alamat = $_POST['alamat'];
+    if ($input_alamat == "") {
+        $input_password = $_POST['alamat-old'];
     }
 
-    $filename =$_FILES['foto']['name'];
-    $temp_name =$_FILES['foto']['tmp_name'];
-    $folder ="../Assets/img/".$filename;
+    $filename = $_FILES['foto']['name'];
+    $temp_name = $_FILES['foto']['tmp_name'];
+    $folder = "../Assets/img/" . $filename;
 
 
-    $query ="UPDATE tb_users SET username='$input_username',email='$input_email',password='$input_password',alamat='$input_alamat',foto='$filename' WHERE id_user=$getID";
+    $query = "UPDATE tb_users SET username='$input_username',email='$input_email',password='$input_password',alamat='$input_alamat',foto='$filename' WHERE id_user=$getID";
     mysqli_query($koneksi, $query);
     header('Location:../View/tables.php');
-    if(move_uploaded_file($temp_name,$folder)){
-        ?><script>alert("Update data berhasil")</script><?php
-    }else{
+    if (move_uploaded_file($temp_name, $folder)) {
+        ?>
+        <script>alert("Update data berhasil")</script><?php
+    } else {
 
     }
 
@@ -111,7 +113,8 @@ if (isset($_POST['submit'])) {
                     <h6>Silahkan pilih foto profil utama warung</h6>
 
 
-                    <input type="file" name="foto" value="<?php $row['foto'] ?>" class="text-center center-block file-upload"
+                    <input type="file" name="foto" value="<?php $row['foto'] ?>"
+                           class="text-center center-block file-upload"
                            onchange="readUrl(this)">
 
                 </div>
@@ -132,8 +135,10 @@ if (isset($_POST['submit'])) {
 
                             <div class="col-xs-6">
                                 <label for="first_name"><h4>Username</h4></label>
-                                <input type="text" class="form-control" name="username" id="first_name" value="<?php echo $row['username'];?>"
-                                       placeholder="<?php echo $row['username']; ?>" title="enter your first name if any.">
+                                <input type="text" class="form-control" name="username" id="first_name"
+                                       value="<?php echo $row['username']; ?>"
+                                       placeholder="<?php echo $row['username']; ?>"
+                                       title="enter your first name if any.">
                                 <input type="hidden" name="username-old" value="<?php $row['username'] ?>">
                             </div>
                         </div>
@@ -141,8 +146,9 @@ if (isset($_POST['submit'])) {
 
                             <div class="col-xs-6">
                                 <label for="last_name"><h4>Email</h4></label>
-                                <input type="text" class="form-control" name="email" id="last_name" value="<?php echo $row['email']; ?>"
-                                       placeholder="<?php echo  $row['email'] ?>" title="enter your last name if any.">
+                                <input type="text" class="form-control" name="email" id="last_name"
+                                       value="<?php echo $row['email']; ?>"
+                                       placeholder="<?php echo $row['email'] ?>" title="enter your last name if any.">
                                 <input type="hidden" name="email-old" value="<?php $row['email'] ?>">
                             </div>
                         </div>
@@ -151,8 +157,10 @@ if (isset($_POST['submit'])) {
 
                             <div class="col-xs-6">
                                 <label for="phone"><h4>Password</h4></label>
-                                <input type="text" class="form-control" id="phone" placeholder="<?php echo $row['password'];?>" value="<?php echo $row['password'] ?>" name="password"></input>
-                                <input type="hidden" name="password-old" value="<?php $row['password']?>">
+                                <input type="text" class="form-control" id="phone"
+                                       placeholder="<?php echo $row['password']; ?>"
+                                       value="<?php echo $row['password'] ?>" name="password"></input>
+                                <input type="hidden" name="password-old" value="<?php $row['password'] ?>">
                             </div>
                         </div>
 
@@ -160,8 +168,9 @@ if (isset($_POST['submit'])) {
 
                             <div class="col-xs-6">
                                 <label for="phone"><h4>Alamat</h4></label>
-                               <input type="text" class="form-control" name="alamat" placeholder="<?php echo $row['alamat'];?>" value="<?php echo $row['alamat'] ?>">
-                                <input type="hidden" name="alamat-old" value="<?php $row['alamat']?>">
+                                <input type="text" class="form-control" name="alamat"
+                                       placeholder="<?php echo $row['alamat']; ?>" value="<?php echo $row['alamat'] ?>">
+                                <input type="hidden" name="alamat-old" value="<?php $row['alamat'] ?>">
                             </div>
                         </div>
 
@@ -177,15 +186,14 @@ if (isset($_POST['submit'])) {
                                 </button>
                             </div>
                         </div>
-
-
                         <hr>
-
                     </div><!--/tab-pane-->
-
-
                 </div><!--/tab-pane-->
             </div><!--/tab-content-->
     </form>
 </div><!--/col-9-->
-</div><!--/row-->
+<!--/row-->
+
+<script type="text/javascript">
+
+</script>
