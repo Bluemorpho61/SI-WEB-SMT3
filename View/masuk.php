@@ -121,17 +121,17 @@ if (isset($_SESSION['id'])) {
         <div class="container">
             <div class="row mt-5 align-items-end d-flex justify-content-center">
                 <div class="col-6" data-aos="fade-up">
-                    <form action="../Controller/cek_login.php" method="post" onsubmit="validasiForm()">
+                    <form action="../Controller/cek_login.php" method="post" id="cek">
                         <!-- Email input -->
                         <div class="form-outline mt-5 mb-4 ">
-                            <input type="email" name="email-log" id="loginName" class="form-control"
+                            <input type="email" name="email-log" id="field" class="form-control"
                                    required="required"/>
                             <label class="form-label" for="loginName">Email</label>
                         </div>
 
                         <!-- Password input -->
                         <div class="form-outline mb-4">
-                            <input type="password" name="pass-log" id="loginPassword" class="form-control"
+                            <input type="password" name="pass-log" id="field" class="form-control"
                                    required="required"/>
                             <label class="form-label" for="loginPassword">Password</label>
                         </div>
@@ -165,14 +165,15 @@ if (isset($_SESSION['id'])) {
 
 
     <script type="text/javascript">
-        function validasiForm() {
-            var email = document.forms["Form"]["email-log"].value;
-            var password = document.forms["Form"]["pass-log"].value;
-            if (email == null || email === "", password == null || password === "") {
-                window.alert("Silahkan masukkan email dan password untuk melakukan login");
-                return false;
+        var cek = document.querySelector('#cek');
+        var field = document.querySelector('#field')
+
+        cek.addEventListener('submit', function (pEvent) {
+            if (field.value===''){
+                pEvent.preventDefault();
+                alert("Silahkan masukkan email beserta password pada field yang tersedia untuk melakukan login");
             }
-        }
+        })
     </script>
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i

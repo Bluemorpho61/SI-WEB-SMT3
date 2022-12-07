@@ -7,6 +7,10 @@ if (!isset($_SESSION['id_user'])) {
     header("Location:../View/Masuk.php");
 }
 
+if (!isset($_GET['id'])){
+    header("Location:../View/tables.php");
+}
+
 $getID = $_GET['id'];
 print_r($getID);
 

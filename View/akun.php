@@ -3,7 +3,7 @@
 require_once("../Config/koneksi.php");
 
 session_start();
-
+//TODO: BENERIN UKURAN FOTO PROFL
 if (!isset($_SESSION['id'])){
     header("Location:../View/masuk.php");
 }
@@ -18,20 +18,25 @@ if(isset($_POST["update"])){
   $username = trim($_POST['username']);
   $email = trim($_POST['email']);
   $alamat = trim($_POST['alamat']);
-  $nama_foto = $_POST["foto-lama"];
+  $filename =$_FILES['foto']['name'];
+  $temp_name=$_FILES['foto']['tmp_name'];
+  $folder ="../Assets/img/".$filename;
 
+move_uploaded_file($temp_name,$folder);
+ // move_uploaded_file()
   // upload foto
-  if($_FILES["foto"]["error"] != 4){
-    // // hapus file , jika default jangan dihapus
-    if($nama_foto != "user-default.png"){
-      unlink("../View/LandingPage/assets/img/".$nama_foto);
-    }
-    // upload file
-    move_uploaded_file($_FILES["foto"]["tmp_name"], "../View/LandingPage/assets/img/".$_FILES["foto"]["name"]);
-    $nama_foto = $_FILES["foto"]["name"];
-  }
+//  if($_FILES["foto"]["error"] != 4){
+//    // // hapus file , jika default jangan dihapus
+//    if($nama_foto != "user-default.png"){
+//      unlink("../View/LandingPage/assets/img/".$nama_foto);
+//    }
+//    // upload file
+//    move_uploaded_file($_FILES["foto"]["tmp_name"], "../View/LandingPage/assets/img/".$_FILES["foto"]["name"]);
+//    $nama_foto = $_FILES["foto"]["name"];
+//  }
 
-  $sql = "UPDATE tb_users set username= '$username', email = '$email', foto = '$nama_foto', alamat = '$alamat' WHERE id_user ='$id'";
+
+  $sql = "UPDATE tb_users set username= '$username', email = '$email', foto = '$filename', alamat = '$alamat' WHERE id_user ='$id'";
   $updated = mysqli_query($koneksi, $sql);
   if($updated){
     echo "<script>alert('Profile berhasil diperbarui!')</script>";
@@ -160,15 +165,17 @@ if ($result->num_rows){
                 </div>
                 <div class="d-flex flex-row align-items-center">
                   <div class="col-3">
+
                     <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                      <img class="rounded-circle" id="foto-profile" width="150px"
-                        src="http://localhost/SI-WEB-SMT3/WarungKuy/assets/img/<?= $row["foto"] ?>">
+                      <img class="avatar img-circle img-thumbnail" id="foto-profile" width="150px"
+                        src="../Assets/img/<?php echo $row['foto']; ?>">
                     </div>
                   </div>
                   <div class="offset-2 col-7">
                     <label class="labels mb-2">Masukan Foto</label>
-                    <input type="text" name="foto-lama" class="d-none" value="<?= $row["foto"] ?>">
-                    <input type="file" name="foto" class="form-control" placeholder="Email" value="" onchange="changeImage(this)">
+<!--                    <input type="text" name="foto-lama" class="d-none" value="--><?//= $row["foto"] ?><!--">-->
+<!--                    <input type="file" name="foto" class="form-control" placeholder="Email" value="" onchange="changeImage(this)">-->
+                        <input type="file" name="foto" class="form-control" value="<?php echo $row['foto'] ?>" placeholder="" onchange="changeImage(this)">
                   </div>
                 </div>
                 <div class="row mt-3">

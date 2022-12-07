@@ -5,7 +5,7 @@ if (!isset($_SESSION["id_user"])) {
     header("Location:../View/masuk.php");
 }
 
-if (!isset($_GET['id'])){
+if (!isset($_GET['id'])) {
     header("Location:../View/KelolaWarung.php");
 }
 
@@ -33,16 +33,16 @@ $deskripsi = $row['deskripsi'];
 
 //Count jumlah komentar
 $qry_htg_komentar = "SELECT COUNT(tb_log_comment_user.komentar) AS jumlah FROM tb_log_comment_user WHERE tb_log_comment_user.id_warung= $id_warung";
-$resultCountCmnt =mysqli_query($koneksi, $qry_htg_komentar);
-$hslCountCmnt =$resultCountCmnt->fetch_assoc()['jumlah'];
+$resultCountCmnt = mysqli_query($koneksi, $qry_htg_komentar);
+$hslCountCmnt = $resultCountCmnt->fetch_assoc()['jumlah'];
 
 //Count banyak favorit
-$qry_htg_favorit ="SELECT COUNT(tb_favorit.id_favorit) AS jumlah FROM tb_favorit WHERE id_warung = $id_warung";
-$resultCountFvrt =mysqli_query($koneksi, $qry_htg_favorit);
-$hslCountFvrt =$resultCountFvrt->fetch_assoc()['jumlah'];
+$qry_htg_favorit = "SELECT COUNT(tb_favorit.id_favorit) AS jumlah FROM tb_favorit WHERE id_warung = $id_warung";
+$resultCountFvrt = mysqli_query($koneksi, $qry_htg_favorit);
+$hslCountFvrt = $resultCountFvrt->fetch_assoc()['jumlah'];
 
 //Count banyak yg memberi rating
-$qry_htg_rating="SELECT COUNT(tb_rating.rating) AS jumlah FROM tb_rating
+$qry_htg_rating = "SELECT COUNT(tb_rating.rating) AS jumlah FROM tb_rating
 WHERE tb_rating.id_warung =$id_warung";
 $resultCountRating = mysqli_query($koneksi, $qry_htg_rating);
 $hslCountRating = $resultCountRating->fetch_assoc()['jumlah'];
@@ -94,15 +94,17 @@ $hslCountRating = $resultCountRating->fetch_assoc()['jumlah'];
 
             <ul class="list-group">
                 <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong><a href="../View/KomentarWarung.php?id=<?php echo $id_warung;?>">Komentar</a></strong></span>
-                    <?php echo $hslCountCmnt;?>
+                <li class="list-group-item text-right"><span class="pull-left"><strong><a
+                                    href="../View/KomentarWarung.php?id=<?php echo $id_warung; ?>">Komentar</a></strong></span>
+                    <?php echo $hslCountCmnt; ?>
                 </li>
-                <li class="list-group-item text-right"><span class="pull-left"><strong><a href="../View/WarungFavorit.php?fav=<?php echo $id_warung;?>">Favorit</a></strong></span>
-                    <?php echo $hslCountFvrt;?>
+                <li class="list-group-item text-right"><span class="pull-left"><strong><a
+                                    href="../View/WarungFavorit.php?fav=<?php echo $id_warung; ?>">Favorit</a></strong></span>
+                    <?php echo $hslCountFvrt; ?>
                 </li>
                 <li class="list-group-item text-right"><span
                             class="pull-left"><strong><a
-                                    href="../View/RatingWarung.php?rate=<?php echo $id_warung;?>">Banyak Rating Yang Diberikan</a></strong></span> <?php echo $hslCountRating;?>
+                                    href="../View/RatingWarung.php?rate=<?php echo $id_warung; ?>">Banyak Rating Yang Diberikan</a></strong></span> <?php echo $hslCountRating; ?>
                 </li>
             </ul>
 
@@ -165,17 +167,17 @@ $hslCountRating = $resultCountRating->fetch_assoc()['jumlah'];
                         </div>
                     </div>
 
-                    <a href="../View/EditWarung.php?id=<?php echo $id_warung;?>">
-                    <button class="btn btn-info btn-lg" >Edit Info</button>
+                    <a href="../View/EditWarung.php?id=<?php echo $id_warung; ?>">
+                        <button class="btn btn-info btn-lg">Edit Info</button>
                     </a>
                     <hr>
                     <br>
 
                     <div id="tambah-foto">
                         <H4 id="tambah-foto">Foto Warung</H4>
-                        <form class="form" method="post"  enctype="multipart/form-data">
-                            <label >Tambah foto</label>
-                            <input  name="foto" type="file" class="btn btn-primary">
+                        <form class="form" method="post" enctype="multipart/form-data">
+                            <label>Tambah foto</label>
+                            <input name="foto" type="file" class="btn btn-primary">
                             <button name="simpan_fotoWarung" type="submit">Simpan Foto</button>
                         </form>
                     </div>
@@ -206,7 +208,11 @@ $hslCountRating = $resultCountRating->fetch_assoc()['jumlah'];
                                                             <td>
                                                                 <img style="width: 410px; height: 200px;"
                                                                      src="../Assets/img/<?php echo $data['foto_warung']; ?>">
-                                                                <a href="../Controller/delete_fotowarung.php?foto=<?php echo $data['id_fotowarung'];?>&id=<?php echo $id_warung?>"><button class="btn btn-danger" name="hapus_gambar_warung">Hapus Gambar</button></a>
+                                                                <a href="../Controller/delete_fotowarung.php?foto=<?php echo $data['id_fotowarung']; ?>&id=<?php echo $id_warung ?>">
+                                                                    <button class="btn btn-danger"
+                                                                            name="hapus_gambar_warung">Hapus Gambar
+                                                                    </button>
+                                                                </a>
                                                             </td>
                                                         </tr>
                                                         <?php
@@ -225,8 +231,8 @@ $hslCountRating = $resultCountRating->fetch_assoc()['jumlah'];
 
                     <!--                    Foto Menu-->
                     <h4>Foto Menu</h4>
-                    <a href="../View/tambahFotoMenu.php?id=<?php echo $id_warung;?>">
-                    <button class="btn btn-primary">Tambah Foto Menu</button>
+                    <a href="../View/tambahFotoMenu.php?id=<?php echo $id_warung; ?>">
+                        <button class="btn btn-primary">Tambah Foto Menu</button>
                     </a>
                     <div class="panel-body">
                         <div class="table-responsive" style="max-height: 500px;">
@@ -265,7 +271,9 @@ $hslCountRating = $resultCountRating->fetch_assoc()['jumlah'];
                                                                 <?php echo $dataMenu['deskripsi'] ?>
                                                             </td>
                                                             <td>
-                                                                <a href="../Controller/deleteFotoMenu.php?menu=<?php echo $dataMenu['id_fotomenu'];?>&id=<?php echo $id_warung?>"><button class="btn btn-danger">Hapus</button></a>
+                                                                <a href="../Controller/deleteFotoMenu.php?menu=<?php echo $dataMenu['id_fotomenu']; ?>&id=<?php echo $id_warung ?>">
+                                                                    <button class="btn btn-danger">Hapus</button>
+                                                                </a>
 
                                                             </td>
                                                         </tr>
