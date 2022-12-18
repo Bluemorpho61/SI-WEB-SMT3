@@ -54,6 +54,8 @@ function login()
         if($user->num_rows){
             $row = mysqli_fetch_assoc($user);
             echo(json_encode($row));
+
+
         } else {
             echo(json_encode([
                 "status" => "ERR",
