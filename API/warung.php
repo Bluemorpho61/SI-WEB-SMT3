@@ -31,6 +31,7 @@ function getById(){
     };
 }
 
+
 function add(){
     echo(json_encode(["method" => $_GET["method"]]));
 }
