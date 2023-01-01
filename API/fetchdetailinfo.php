@@ -27,7 +27,7 @@ function getDetail()
         } else {
             echo(json_encode([
                 "status" => "ERR",
-                "message" => "Email atau Password Salah!"
+                "message" => "Gagal"
             ]));
         }
     }else {

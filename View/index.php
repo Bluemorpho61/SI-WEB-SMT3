@@ -4,7 +4,7 @@ include('../Config/koneksi.php');
 //$id = $_GET['username'];
 if (!isset($_SESSION['id_user'])){
 $_SESSION['msg']='Anda harus login terlebih dahulu';
-header("Location:../View/Masuk.php");
+header("Location:../View/masuk.php");
 }
 print_r($sesID =$_SESSION['id_user']);
 $sesNama =$_SESSION['username'];

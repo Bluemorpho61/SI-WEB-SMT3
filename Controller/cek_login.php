@@ -1,5 +1,5 @@
 <?php
-$koneksi =mysqli_connect("localhost", "root", "", "db_warungkuy");
+$koneksi =mysqli_connect("sql6.freemysqlhosting.net", "sql6587340", "WpT58wCsWx", "sql6587340");
 session_start();
 if (isset($_POST['submit'])){
     $email=$_POST['email-log'];

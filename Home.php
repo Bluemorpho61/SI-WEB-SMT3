@@ -80,7 +80,7 @@
               <h1 data-aos="fade-right">WarungKuy</h1>
               <p class="mb-5" data-aos="fade-right" data-aos-delay="100">Perluas referensi tempat bersantap anda!
                </p>
-              <p data-aos="fade-right" data-aos-delay="200" data-aos-offset="-500"><a href="daftar.php" class="btn btn-outline-white">Daftar Sekarang</a></p>
+              <p data-aos="fade-right" data-aos-delay="200" data-aos-offset="-500"><a href="../View/daftar.php" class="btn btn-outline-white">Daftar Sekarang</a></p>
             </div>
             <div class="col-lg-4 iphone-wrap">
               <img src="../View/LandingPage/assets/img/phone.png" alt="Image" class="phone-1" data-aos="fade-right">
